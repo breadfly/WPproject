@@ -27,13 +27,9 @@ html, css 작성
 
 django는 톰캣이나 이클립스나 mysql 같이 무겁고 짜증나는 것들을 안 깔아도 된다는 엄청난 장점이 있답니다. 적당한 에디터랑 django만 깔면 만사 OK (물론 파이썬 정도는 깔아야 하지만)
 
-해당 가이드라인은 Win10 64bit, visual studio code를 기반으로 작성되었습니다. 다른 운영체제나 에디터를 사용해도 무방합니다 (다만 방법은 알아서 찾으시길...)
-
-설치한 게 오래 전이라 저도 잘 모릅니다.. 막히는 부분이 있으면 구글링..
+해당 가이드라인은 Win10 64bit, visual studio code를 기반으로 작성되었습니다. 다른 운영체제나 에디터를 사용해도 무방합니다 (다만 방법은 알아서 찾으시길...) 설치한 게 오래 전이라 저도 잘 모릅니다.. 막히는 부분이 있으면 구글링.. 그리고 이미 본인한테 깔려 있다 싶은 건 알아서 스킵하세요 파이썬이나 git 같은거..
 
 
-
-이미 본인한테 깔려 있다 싶은 건 알아서 스킵하세요 파이썬이나 git 같은거..
 
 1. 파이썬3 설치(혹시나 모르니 파이썬 3.6 이상으로 설치)
 	* 반드시 Add python to PATH 항목을 선택
@@ -53,21 +49,30 @@ django는 톰캣이나 이클립스나 mysql 같이 무겁고 짜증나는 것�
 	* pip install pylint_django
 
 5. git 설치
-	* 나도 어케 깐지 기억안남.. 참고 링크 https://promobile.tistory.com/352
+	* 참고 링크 https://promobile.tistory.com/352
 	* git 설치 하고 git bash 틀어서(프로그램 검색해보면 나옴) 다음 명령어 입력
 	* git config --global user.name 깃허브아이디
 	* git config --global user.email 적당한이메일
 	* visual studio code가 아마 이거 끝나면 알아서 git 익스텐션 깔라고 하거나 깔아줄것임.
 
+
+
 #### 실행
+
+
 
 1. visual studio code에서 github repository랑 연결하는 법
 	* 위에 거 다 끝내고 vs code 켠다
-	* ctrl+` 눌러서 터미널 연다
-	* git remote add origin https://github.com/breadfly/WPproject.git 입력
+	* 왼쪽 탭 젤 위에 거(explorer) 누름. open folder해서 작업할 빈 폴더 암거나 만들기
 	* 왼쪽 탭에 트리?처럼 생긴 거 있음 (동그라미 세개 이어진거) 그거 클릭 (source control)
 		* 없으면 extension 들어가서 git 검색 후 install
-	* 
+	* '+' 클릭해서 뭔가 창 같은 거 뜰 텐데 걍 엔터
+	* ctrl+` 눌러서 터미널 연다
+	* git remote add origin https://github.com/breadfly/WPproject.git 입력
+	* ... 누르고 pull from 누르고 엔터
+
+	* 수정하고는 commit(체크 버튼)누르고 ...에서 push to 찾아서 하면 됨
 
 2. 서버 켜는 법
-	*
+	* 해당 readme.md가 존재하는 폴더에서 터미널(ctrl+`)에 python3 manage.py runserver 입력. 그러면 서버 실행됨
+	* 웹브라우저 주소창에 localhost:8000 넣으면 접속됨
