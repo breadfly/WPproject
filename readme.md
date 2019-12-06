@@ -4,16 +4,16 @@
 
 진행 현황
 --------
-본인이 하고 있는 일, 타인이 참고했으면 하는 사항을 자유롭게 적어주세요. 이름은 ㄱㄴㄷ순
+본인이 하고 있는 일, 타인이 참고했으면 하는 사항을 자유롭게 적어주세요.
 
-# 김지혜
+#### 강보영
+html, css 작성
+
+#### 김지혜
 DB 들으면서 짰던 django 프로젝트 일단 올려놓음. 실행해보길 권장함.
 수정사항이나 추가하고 싶은 거 있으면 플젝 contributor로 해놨으니 바로 push하면 됨 (방법은 해당 문서 참고)
 
-# 강보영
-html, css 작성
-
-# 임세아
+#### 임세아
 html, css 작성
 
 실행 가이드라인
@@ -21,7 +21,7 @@ html, css 작성
 
 백엔드 짜는 법은 몰라도 실행은 해봅시다
 
-# 설치
+#### 설치
 
 django는 톰캣이나 이클립스나 mysql 같이 무겁고 짜증나는 것들을 안 깔아도 된다는 엄청난 장점이 있답니다
 적당한 에디터랑 django만 깔면 만사 OK (물론 파이썬 정도는 깔아야 하지만)
@@ -54,12 +54,16 @@ django는 톰캣이나 이클립스나 mysql 같이 무겁고 짜증나는 것�
 	* git 설치 하고 git bash 틀어서(프로그램 검색해보면 나옴) 다음 명령어 입력
 	* git config --global user.name 깃허브아이디
 	* git config --global user.email 적당한이메일
+	* visual studio code가 아마 이거 끝나면 알아서 git 익스텐션 깔라고 하거나 깔아줄것임.
 
-# 실행
+#### 실행
 
 1. visual studio code에서 github repository랑 연결하는 법
 	* 위에 거 다 끝내고 vs code 켠다
+	* ctrl+` 눌러서 터미널 연다
+	* git remote add origin https://github.com/breadfly/WPproject.git 입력
 	* 왼쪽 탭에 트리?처럼 생긴 거 있음 (동그라미 세개 이어진거) 그거 클릭 (source control)
+		* 없으면 extension 들어가서 git 검색 후 install
 	* 
 
 2. 서버 켜는 법
