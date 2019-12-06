@@ -1,0 +1,10 @@
+<header>
+	<a href="{% url 'index' %}">홈화면</a>
+	<a href="{% url 'signup' %}">회원가입</a>
+	<a href="{% url 'login' %}">{{login}}</a>
+	<a href="{% url 'mypage' %}">마이페이지</a>
+	<a href="{% url 'allBooks' %}">도서 구매</a>
+	<a href="{% url 'cart' %}">북카트</a>
+	<hr>
+</header>
+{% block content %}{% endblock %}

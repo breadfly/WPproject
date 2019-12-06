@@ -1,0 +1,7 @@
+<div>
+	<a href="{% url 'allBooks' %}"><p>전체</p></a>
+	{% for obj in category %}
+		<a href="{% url 'books' obj.name %}">{{obj.name}}</a>
+	{% endfor %}
+</div>
+<hr>

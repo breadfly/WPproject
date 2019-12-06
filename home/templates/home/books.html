@@ -1,0 +1,17 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+{% include 'home/booksCategory.html' %}
+	<select id="sort-select" onchange="location=this.value;"style="width:200px;height:50px;font-weight:bold;">
+		<option class="sort-nothing" value="/">-----------</option>
+		<option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
+		<option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
+	</select>
+	<div>
+
+		{% for obj in books %}
+		<p><a href="{% url 'detail' obj.category.name obj.isbn %}">{{ obj.name }}</a> 
+			| {{obj.category.name}} | {{obj.author}} | {{obj.price}}</p>
+		{% endfor %}
+	</div>
+{% endblock content %}
