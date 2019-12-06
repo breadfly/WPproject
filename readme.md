@@ -76,5 +76,5 @@ django는 톰캣이나 이클립스나 mysql 같이 무겁고 짜증나는 것�
 	* conflict 발생하면 적당히 잘 고쳐서 merge하든가 rebase하든가 아님 아예 새로 짜든가 등등..
 
 2. 서버 켜는 법
-	* 해당 readme.md가 존재하는 폴더에서 터미널(ctrl+`)에 python3 manage.py runserver 입력. 그러면 서버 실행됨
+	* 해당 readme.md가 존재하는 폴더에서 터미널(ctrl+`)에 python manage.py runserver 입력. 그러면 서버 실행됨
 	* 웹브라우저 주소창에 localhost:8000 넣으면 접속됨
