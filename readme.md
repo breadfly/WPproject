@@ -71,7 +71,7 @@ django는 톰캣이나 이클립스나 mysql 같이 무겁고 짜증나는 것�
 	* git remote add origin https://github.com/breadfly/WPproject.git 입력
 	* ... 누르고 pull from 누르고 엔터
 
-	* 수정하고는 commit(체크 버튼)누르고 ...에서 push to 찾아서 하면 됨
+	* 수정하고는 commit(체크 버튼)누르고 ...에서 push to 찾아서 하면 업로드됨
 	* 작업 시작하기 전에 pull from 부터 무조건 하기(다른 사람들 수정한 거 다운받는 것임)
 	* conflict 발생하면 적당히 잘 고쳐서 merge하든가 rebase하든가 아님 아예 새로 짜든가 등등..
 
