@@ -1,14 +1,24 @@
-{% extends "home/base.html" %}
+{% load static %}
 
-{% block content %}
-    <div>
-        {{msg}}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">로그인</button>
-        </form>
-        <a href="{% url 'signup' %}">회원가입</a>
-    </div>
-
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ShopShop</title>
+    <link rel="stylesheet" href="{% static 'home/style_login.css' %}">
+  </head>
+  <body>
+    <div class="login-page">
+      <div class="form">
+          <div style="color: #0083B0; font-size: 12px; font-style: italic; padding:5%;">{{msg}}</div>
+          <form class="login-form" method="POST">
+        {% csrf_token %}
+        {{ form.userid }}
+        {{ form.pw }}
+        <button type="submit">login</button>
+      <p class="message">Not registered? <a href="{% url 'register' %}">Register Now</a></p>
+    </form>
+  </div>
+</div>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+{% load static %}
+{% load widget_tweaks %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ShopShop</title>
+    <script type="text/javascript">
+      function oneCheck(a){
+        var obj = document.getElementsByName("checkbox1");
+        for(var i=0; i<obj.length; i++){
+          if(obj[i]!=a){
+            obj[i].checked=false;
+          }
+        }
+      }
+    </script>
+    <style>
+    .errorlist{
+      color: rgb(204, 23, 23);
+      list-style: none;
+      font-size:11.5px;
+      padding:0;
+      margin:0 0 5% 0;
+    }
+    
+    #is-invalid{
+      border: 1px solid rgb(255, 18, 18);
+    }
+    #is-valid{
+    }
+
+
+    </style>
+    <link rel="stylesheet" href="{% static 'home/style_register.css' %}">
+  </head>
+  <body>
+        <div class="login-page">
+            <div class="form">
+                <form method="POST">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                {% if field.errors %}
+                  {{field.errors}}
+                  {% render_field field id="is-invalid" %}
+                {% else %}
+                  {% render_field field id="is-valid" %}
+                {% endif %}
+                {% endfor %}
+
+                <button type="submit">SIGN UP</button>
+            </form>
+            <p class="message">Already registered? <a href="login.html">Sign In</a></p>
+          </div>
+  </div>
+  </body>
+</html>
+
+
+<!--
+
+            <div class="form">
+      <form class="register-form">
+        <div class="id-form">
+          <input type="text" placeholder="ID"/>
+        </div>
+        <div class="id-form">
+          <button type="button">check</button>
+        </div>
+      <input type="password" placeholder="Password"/>
+      <input type="text" placeholder="Name"/>
+      <div class="check-form">
+        <input type="checkbox" name="checkbox1" value="buyer" onclick="oneCheck(this)">buyer
+      </div>
+      <div class="check-form">
+        <input type="checkbox" name="checkbox1" value="seller" onclick="oneCheck(this)">seller
+      </div>
+      <button type="button">create</button>
+
+-->

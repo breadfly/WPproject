@@ -18,6 +18,16 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 8. 낙찰 알림페이지
 """
 
+class Category(models.Model):
+	name = models.CharField(max_length=30)
+
+class User(models.Model): # seller buyer 구분하지 말고 걍 둘다 가능하게 해
+	rating = models.IntegerField(default=0)
+	userid = models.CharField(max_length=20, primary_key=True)
+	pw = models.CharField(max_length=20) # min length  같은 건 js 단에서 처리하기
+	username = models.CharField(max_length=100)
+	phone = models.CharField(max_length=30)
+
 class Product(models.Model):
 	SELLTYPES = (('F', 'Flea'), ('A', 'Auction'))
 	selltype = models.CharField(max_length=1, default='F', choices=SELLTYPES)
@@ -27,22 +37,15 @@ class Product(models.Model):
 	highest_price = models.IntegerField(default=0) # auction이더라도 천장 가격 내면 바로 살 수 있게 하자
 	basic_price =  models.IntegerField(default=0) #옥션이라도 최저가 쓰게 하자
 	current_price = models.IntegerField(default=0) # 마지막 가격이기도 하지
-	buyer = models.ForeignKey(User, on_delete=models.CASCADE)
+	buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='buyer')
+	seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seller')
 	pid = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=300)
-	seller = models.ForeignKey(User, on_delete=models.CASCADE)
 	place = models.CharField(max_length=300)
 	photo = models.ImageField(blank=True) #https://wayhome25.github.io/django/2017/05/10/media-file/
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-	explanation = models.StringField() # string field 같은 게 있었나?? 찾아보기
-
-class User(models.Model): # seller buyer 구분하지 말고 걍 둘다 가능하게 해
-	rating = models.IntegerField(default=0)
-	userid = models.CharField(max_length=20, primary_key=True)
-	pw = models.CharField(max_length=20) # min length  같은 건 js 단에서 처리하기
-	username = models.CharField(max_length=100)
-	phone = models.CharField(max_length=30)
+	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
 
 class Wishlist(models.Model):
 	userid = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -57,15 +60,8 @@ class Wishlist(models.Model):
 # buy history는 내가 낙찰된 것만
 # 낙찰안된건 알림 오고 치우기
 
-class Category(models.Model):
-	name = models.CharField(max_length=30)
-
 # before
 
-class History(models.Model):
-	pid = models.AutoField(primary_key=True)
-	cid = models.ForeignKey(Customer, on_delete=models.CASCADE)
-	date = models.DateTimeField()
 
 class Customer(models.Model):
 	cid = models.CharField(max_length=20, primary_key=True)
@@ -73,6 +69,11 @@ class Customer(models.Model):
 	birthyear = models.PositiveIntegerField(validators=[MinValueValidator(1900), MaxValueValidator(9999)],default=1990)
 	GENDERS = (('F', 'Female'), ('M', 'Male'),('U', 'Unknown'))
 	gender = models.CharField(max_length=1, default='U', choices=GENDERS)
+
+class History(models.Model):
+	pid = models.AutoField(primary_key=True)
+	cid = models.ForeignKey(Customer, on_delete=models.CASCADE)
+	date = models.DateTimeField()
 
 class Book(models.Model):
 	isbn = models.CharField(max_length=13, primary_key=True)

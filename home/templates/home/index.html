@@ -1,16 +1,17 @@
-{% extends "home/base.html" %}
-{% block content %}
-    <div>
-		{% if cid is not None %}
-		<h2>{{cid}}님을 위한 책 추천,</h2>
-		<h2>{{cid}}님 또래의 {{gender}}가 가장 많이 선택한 책 세권을 만나보세요.</h2>
-		{% else %}
-		<h2> 우리 책 사이트에서 가장 인기 있는 책 세권을 소개합니다. </h2>
-		{% endif %}
-		<ol>
-			{% for book in recommend %}
-			<li><a href="{% url 'detail' book.category.name book.isbn %}">{{ book.name }}</a> </li>
-		{% endfor %}
-		</ol>
-</div>
-{% endblock content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ShopShop</title>
+    <link rel="stylesheet" href="{% static 'home/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style_index.css' %}">
+  </head>
+  <body>
+  <div class="logo bounceIn">
+    <a href="{% url 'login' %}" target="_parent"><img src="{% static 'home/logo.png' %}" alt="LOGO_IMG">
+    </a>
+  </div>
+  </body>
+</html>

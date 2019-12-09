@@ -7,6 +7,66 @@ from .forms import *
 from .models import *
 from django.db.models import Count
 
+def register(request):
+	userid = request.session.get('userid', False)
+	if userid != False:#로그인상태
+		return redirect('/')
+	if request.method == 'POST':
+		form = RegisterForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/login')
+	else:
+		form = RegisterForm()
+	return render(request, 'home/register.html', {'form':form})
+
+def login(request):
+	userid = request.session.get('userid', False)
+	if userid == False: # login안되어있으면
+		msg=''
+		if request.method == 'POST':
+			form = LoginForm(request.POST)
+			try:
+				user = User.objects.get(userid=form.data['userid'], pw=form.data['pw']) # 맞는지 비교
+				request.session['userid'] = form.data['userid']
+				return redirect('/')
+			except:
+				msg='로그인 정보가 올바르지 않습니다.'
+				form = LoginForm()
+		else:
+			form = LoginForm()
+		return render(request, 'home/login.html', {'form':form, 'msg':msg})
+	else: # login 되어있는데 이 페이지 들어왔으면? 그냥 홈으로 리다이렉트 시킬래
+		return redirect('/')
+		"""try:
+			del request.session['cid']
+		except KeyError:
+			pass"""
+
+def index(request): # 로고에 animate.css 넣어도 이쁘겠군.. 나중에 해봐야지
+	userid = request.session.get('userid', False)
+	if userid != False : # 로그인 되어있으면
+		return render(request, 'home/product_list.html')
+	return render(request, 'home/index.html') #안돼있으면
+
+	"""
+	cid = request.session.get('cid', False)
+	rec = recommend(cid)
+	if cid != False:
+		g = Customer.objects.get(cid=cid).gender
+		if g == 'F':
+			gender = '여자'
+		elif g == 'M':
+			gender = '남자'
+		else: 
+			gender = '유저'
+		return render(request, 'home/index.html', {'login':'logout','cid':cid, 'gender':gender, 'recommend':rec})
+	else:
+		return render(request, 'home/index.html', {'login':'login','cid':None, 'recommend':rec})
+	"""
+
+#############################
+
 def purchase(request):
 	cid = request.session.get('cid',False)
 	if cid == False :
@@ -92,20 +152,6 @@ def detail(request, category, isbn):
 	categories = Category.objects.values('name').distinct()
 	return render(request, 'home/detail.html', {'login':login, 'book':book,'form':form,'category':categories})
 
-def signup(request):
-	cid = request.session.get('cid', False)
-	login = 'logout'
-	if cid == False: login = 'login'
-
-	if request.method == 'POST':
-		form = CustomerForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('/')
-	else:
-		form = CustomerForm()
-	return render(request, 'home/signup.html', {'login':login,'form':form})
-
 def mypage(request):
 	cid = request.session.get('cid', False)
 	if cid == False :
@@ -131,44 +177,6 @@ def modifyAcc(request):
 	else:
 		form = ModifyForm(initial={'birthyear':customer.birthyear, 'gender':customer.gender})
 	return render(request, 'home/modifyAcc.html', {'login':login,'form':form})
-
-def login(request):
-	cid = request.session.get('cid', False)
-	if cid == False: # login
-		msg=''
-		if request.method == 'POST':
-			form = LoginForm(request.POST)
-			try:
-				customer = Customer.objects.get(cid=form.data['cid'], pw=form.data['pw'])
-				request.session['cid'] = form.data['cid']
-				return redirect('/')
-			except:
-				msg='로그인 정보가 올바르지 않습니다.'
-				form = LoginForm()
-		else:
-			form = LoginForm()
-		return render(request, 'home/login.html', {'login':'login','form':form, 'msg':msg})
-	else:
-		try:
-			del request.session['cid']
-		except KeyError:
-			pass
-		return redirect('/')
-
-def index(request):
-	cid = request.session.get('cid', False)
-	rec = recommend(cid)
-	if cid != False:
-		g = Customer.objects.get(cid=cid).gender
-		if g == 'F':
-			gender = '여자'
-		elif g == 'M':
-			gender = '남자'
-		else: 
-			gender = '유저'
-		return render(request, 'home/index.html', {'login':'logout','cid':cid, 'gender':gender, 'recommend':rec})
-	else:
-		return render(request, 'home/index.html', {'login':'login','cid':None, 'recommend':rec})
 
 def recommend(cid):
 	if cid == False:
