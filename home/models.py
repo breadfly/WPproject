@@ -5,19 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 #new
 
-"""
-추가하면 좋을 기능 정리
-1. auction이더라도 바로 낙찰할 수 있는 가격 / highest
-구매자가 너무 맘에 들어서 이 가격 써내면 바로 낙찰됨
-2. 최저가 설정도 하게 하기
-3. 언제까지 팔 건지 시간 선택 가능.
-4. 카테고리
-5. 다양한 정렬 기능 (방금 입찰된 것, 가장 많이 입찰된 것 등등)
-6. 판매자 평가 기능(낙찰자만 가능)
-7. 입찰한 사람이 아무도 없을 경우에만 expire 늘릴 수 있음
-8. 낙찰 알림페이지
-"""
-
 class Category(models.Model):
 	name = models.CharField(max_length=30)
 

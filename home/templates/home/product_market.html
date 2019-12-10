@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'home/style_product_market.css' %}">
+    <title>ShopShop</title>
+  </head>
+  <body>
+    <div class="product-page">
+      <nav class="left-nav">
+        <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
+        <ul>
+          <li><a class="upper" href="my_page.html">Sell</a></li>
+          <li><a class="upper href="my_page.html">Wishlist</a></li>
+          <li><a class="upper" href="my_page.html">My Items</a></li>
+          <li><a class="lower" href="product_market.html">Flea Market</a></li>
+          <li><a class="lower" href="product_auction.html">Auction</a></li>
+          <li><a class="lower" href="product_auction.html">My Account</a></li>
+          <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </nav>
+      <section>
+          {% include 'home/productsCategory.html' %}  
+        <hr>
+          <div class="selectbox">
+            <select id="sort-select" onchange="location=this.value;"style="width:200px;height:50px;font-weight:bold;">
+              <option class="sort-nothing" value="/">-----------</option>
+              <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
+              <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
+            </select>
+          <div>
+    
+          <table class="goods_table">
+            {% for obj in products %}
+              <tr>
+              <td class="goods_img">
+                <img src="/{{obj.photo.url}}">
+              </td>
+              <td class="goods_info">
+                <p class="goods_name"> {{ obj.name }} </p>
+                <div class="inf">
+                    <p class="goods_price"> <strong> PRICE </strong> {{ obj.basic_price }} </p>
+                    <p class="seller_name"> <strong> SELLER </strong> {{ obj.seller.username }} </p>
+                    <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
+                    <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
+                </div>
+                <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </table>
+    
+        </section>
+
+
+    </div>
+  </body>
+</html>

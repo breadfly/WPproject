@@ -1,0 +1,6 @@
+<div>
+	<a href="{% url 'allBooks' %}"><p class="category">전체</p></a>
+	{% for obj in categories %}
+		<p class="category"><a href="{% url 'books' obj.name %}">{{obj.name}}</a></p>
+	{% endfor %}
+</div>

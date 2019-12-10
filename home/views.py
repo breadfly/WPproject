@@ -7,6 +7,41 @@ from .forms import *
 from .models import *
 from django.db.models import Count
 
+def logout(request):
+	userid = request.session.get('userid', False)
+	if userid != False : # 로그인 되어있으면
+		del request.session['userid']
+	return redirect('/')
+
+def sell(request):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	if request.method == 'POST':
+		form = SellForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/')
+#			return redirect('/mypage')
+	else:
+		form = SellForm()
+	return render(request, 'home/product_registration.html', {'form':form})
+
+
+	return render(request, 'home/product_registration.html')
+
+def market(request, category=''):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	categories = Category.objects.values('name').distinct()
+	products = None
+	if category == '':
+		products = Product.objects.all()
+	else :
+		products = Product.objects.filter(category__name=category)
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+
 def register(request):
 	userid = request.session.get('userid', False)
 	if userid != False:#로그인상태
@@ -15,7 +50,7 @@ def register(request):
 		form = RegisterForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/login')
+			return render(request, 'home/welcome.html', {'userid':form.data['userid']})
 	else:
 		form = RegisterForm()
 	return render(request, 'home/register.html', {'form':form})
@@ -46,7 +81,7 @@ def login(request):
 def index(request): # 로고에 animate.css 넣어도 이쁘겠군.. 나중에 해봐야지
 	userid = request.session.get('userid', False)
 	if userid != False : # 로그인 되어있으면
-		return render(request, 'home/product_list.html')
+		return redirect('/market')
 	return render(request, 'home/index.html') #안돼있으면
 
 	"""

@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ShopShop</title>
+    <link rel="stylesheet" href="{% static 'home/style_register.css' %}">
+    <style>
+      p{
+        padding:10px;
+        margin:10px;
+      }
+      div{
+        color: rgb(90, 90, 90);
+        list-style: none;
+        font-size:12px;
+      }
+    </style>
+  </head>
+  <body>
+
+  <div class="login-page">
+    <div class="form">
+        <p>Welcome, {{ userid }}!</p>
+        <p>Please sign up before use the website.</p>
+        <p><a href="{% url 'login' %}"><button>LOGIN</button></p></a>
+         </div>
+  </div>
+
+  </body>
+</html>

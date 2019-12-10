@@ -1,36 +1,74 @@
+{% load static %}
+{% load widget_tweaks %}
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style_product_registration.css">
+    <script type="text/javascript">
+      function oneCheck(a){
+        var obj = document.getElementsByName("checkbox1");
+        for(var i=0; i<obj.length; i++){
+          if(obj[i]!=a){
+            obj[i].checked=false;
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="{% static 'home/style_product_registration.css' %}">
     <title>ShopShop</title>
   </head>
   <body>
-    <header class="main_header">
-      <h1>ShopShop</h1>
-    </header>
-    <div class="registration-page">
-      <table>
-        <tr>
-          <td class="img_input">
-            <input type="image" name="Photo Upload" value="">
-          </td>
-          <td class="info_input">
-            <p>[Product Name] <input type="text" name="Product Name" value=""> </p>
-            <p>[Product Price] <input type="text" name="price" value=""></p>
-            <p>[Seller Name] <input type="text" name="name" value=""> [Phone number] <input type="text" name="phone number" value=""></p>
-            <p>[Trading place]</p>
-            <div class="check">
-              <input type="checkbox" name="check1" value="flea_market" onclick="oneCheck(this)">Flea Market
-            </div>
-            <div class="check">
-              <input type="checkbox" name="check1" value="auction" onclick="oneCheck(this)">Auction
-            </div>
-            <button type="button" name="button">Registration</button>
-          </td>
-        </tr>
-      </table>
+    <div class="product-page">
+      <nav class="left-nav">
+        <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
+        <ul>
+          <li><a href="product_market.html">Flea Market</a></li>
+          <li><a href="product_auction.html">Auction</a></li>
+          <li><a href="search.html">Search Product</a></li>
+        </ul>
+      </nav>
+      <div class="form">
+          <form method="POST">
+          {% csrf_token %}
+          {% for field in form.visible_fields %}
+          {% if field.errors %}
+            {{field.errors}}
+            {% render_field field id="is-invalid" %}
+          {% else %}
+            {% render_field field id="is-valid" %}
+          {% endif %}
+          {% endfor %}
 
+          <button type="submit">SELL</button>
+      </form>
+    </div>
+
+      <div class="box1">
+        <div class="photo-area" width="300px" height="300px">
+          <img src="cap.png" alt="goods_IMG" width="300px">
+        </div>
+        <button type="button" class="btn">Photo Upload</button>
+      </div>
+      <div class="box2">
+        <div class="inf">
+          <input type="text" placeholder="Product Name"/>
+          <input type="number" placeholder="Price"/>
+          <input type="text" placeholder="Seller Name"/>
+          <input type="text" placeholder="Phone Number"/>
+          <input type="text" placeholder="Trading Place"/>
+        </div>
+        <div class="check">
+          <div class="check-form">
+            <input type="checkbox" name="checkbox1" value="Flea Market" onclick="oneCheck(this)">Flea Market
+          </div>
+          <div class="check-form">
+            <input type="checkbox" name="checkbox1" value="Auction" onclick="oneCheck(this)">Auction
+          </div>
+        </div>
+        <button type="button" class="btn">Registration</button>
+      </div>
     </div>
   </body>
 </html>

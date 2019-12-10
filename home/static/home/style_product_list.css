@@ -1,0 +1,47 @@
+:root{
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+body{
+  background: #ffe259;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+}
+.main_header {
+text-align:left;
+font-size:25px;
+font-family:sans-serif;
+color:#ffe259;
+letter-spacing: 2px;
+padding: 10px 20px 40px 30px;
+-webkit-text-fill-color:transparent;
+-webkit-text-stroke-width:3px;
+}
+table.table-area {
+  font-family: "Roboto", sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+    text-align: center;
+    line-height: 1.5;
+    margin: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+table.table-area thead th {
+    padding: 15px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #FFFFFF;
+    background: #ffa751;
+    margin: 20px 10px;
+    font-size: 14px;
+}
+table.table-area td {
+    font-size: 12px;
+    color: #333333;
+    padding: 13px;
+    vertical-align: top;
+}
+table.table-area .even {
+    background: #fdf3f5;
+}

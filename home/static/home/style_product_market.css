@@ -1,7 +1,22 @@
+/* Edit here */
+
+.category{
+
+}
+.selectbox{
+}
+/* Edit here */
+
 :root{
   --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
+
+hr{
+  width:80%;
+}
 body{
+  font-family: "Roboto", sans-serif;
+
   background: #77A1D3;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -20,21 +35,38 @@ padding: 10px 20px 40px 30px;
 -webkit-text-stroke-width:3px;
 }
 
+.product-page{
+  display: flex;
+}
+
 .left-nav{
-  display:grid;
-  float:left;
-  padding-right:25px;
+  width:300px;
+  align-content: center;
+  display:flex;
+  flex-direction: column;
+  text-align:center;
+  padding-right:20px;
+}
+.left-nav img{
+  padding-left:75px;
+}
+section{
+  width:100%;
 }
 
 .left-nav ul{
+  width:100%;
   display:grid;
   grid-gap:15px;
   text-align:left;
   font-size:18px;
-  font-weight:bold;
   list-style:none;
 }
-.left-nav a{
+.left-nav li{
+  text-align: center;
+
+}
+.left-nav li a{
     color:#ffffff;
     text-decoration:none;
     display:block;
@@ -42,9 +74,10 @@ padding: 10px 20px 40px 30px;
     border-radius:25px;
     background-color: #77A1D3;
 }
-.left-nav a:hover{
+.left-nav li a:hover{
+ color: #77A1D3;
+    background-color: #E684AE;
   background:white;
-  color:#77A1D3;
 }
 
 table{
@@ -73,12 +106,12 @@ td{
   text-align:left;
   padding-left:0.5rem;
 }
-.btn{
+.market_btn{
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #00B4DB;
-  width: 77%;
+  width: 45%;
   border: 0;
   padding: 13px;
   color: #ffffff;
@@ -88,30 +121,6 @@ td{
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.btn:hover{
+.market_btn:hover{
   background: #0083B0;
-}
-
-.auction-area input{
-  display: inline-block;
-  border: 3px solid #0083B0;
-  background: white;
-  padding: 10px;
-  width: 43%;
-  margin: 0.5rem;
-  margin-left:0;
-}
-.auction-area button{
-  margin: 0;
-  border: 0;
-  background: #0083B0;
-  color: white;
-  padding: 13px;
-  font-weight: bold;
-  width: 28%;
-  border-radius: 1px;
-  cursor: pointer;
-}
-.auction-area button:hover, button:active, button:focus{
-  background: #00B4DB;
 }

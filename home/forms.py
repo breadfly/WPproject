@@ -1,6 +1,37 @@
 from django import forms
 from .models import Customer
 from .models import User
+from .models import Product
+
+"""
+	SELLTYPES = (('F', 'Flea'), ('A', 'Auction'))
+	selltype = models.CharField(max_length=1, default='F', choices=SELLTYPES)
+	STATUSTYPES = (('S', 'Sold'), ('E', 'Expired'), ('R', 'Running')) # 팔림, 안팔림, 현재진행형
+	statustype = models.CharField(max_length=1, default='E', choices=STATUSTYPES)
+	expire = models.DateTimeField(default=0)
+	highest_price = models.IntegerField(default=0) # auction이더라도 천장 가격 내면 바로 살 수 있게 하자
+	basic_price =  models.IntegerField(default=0) #옥션이라도 최저가 쓰게 하자
+	current_price = models.IntegerField(default=0) # 마지막 가격이기도 하지
+	buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='buyer')
+	seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seller')
+	pid = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=300)
+	place = models.CharField(max_length=300)
+	photo = models.ImageField(blank=True) #https://wayhome25.github.io/django/2017/05/10/media-file/
+	category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
+
+"""
+
+class SellForm(forms.ModelForm):
+    error_css_class = 'error'
+
+#'selltype', 'expire', 'highest_price', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation'
+    class Meta:
+        model = Product
+        fields = ['selltype', 'highest_price', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
+
 
 class RegisterForm(forms.ModelForm):
     error_css_class = 'error'
@@ -60,7 +91,7 @@ class RegisterForm(forms.ModelForm):
         else:
             try:
                 user = User.objects.get(userid=userid)
-                self.add_error('id', "ID already exists")
+#                self.add_error('userid', "ID already exists")
                 return False
             except User.DoesNotExist:
                 return valid
