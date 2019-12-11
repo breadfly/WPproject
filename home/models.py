@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import datetime, timedelta
 
 #new
 
@@ -19,20 +20,22 @@ class Product(models.Model):
 	SELLTYPES = (('F', 'Flea'), ('A', 'Auction'))
 	selltype = models.CharField(max_length=1, default='F', choices=SELLTYPES)
 	STATUSTYPES = (('S', 'Sold'), ('E', 'Expired'), ('R', 'Running')) # 팔림, 안팔림, 현재진행형
-	statustype = models.CharField(max_length=1, default='E', choices=STATUSTYPES)
-	expire = models.DateTimeField(default=0)
+	statustype = models.CharField(max_length=1, default='R', choices=STATUSTYPES)
+	EXPIREDATE = ((datetime.now() + timedelta(days=3), '3 Days'), (datetime.now() + timedelta(days=7), '7 days'),
+	(datetime.now() + timedelta(days=30), '30 days'))
+	expire = models.DateTimeField(default=datetime.now() + timedelta(days=1), choices=EXPIREDATE)
 	highest_price = models.IntegerField(default=0) # auction이더라도 천장 가격 내면 바로 살 수 있게 하자
 	basic_price =  models.IntegerField(default=0) #옥션이라도 최저가 쓰게 하자
 	current_price = models.IntegerField(default=0) # 마지막 가격이기도 하지
-	buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='buyer')
+	buyer = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='buyer', null=True)
 	seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='seller')
 	pid = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=300)
 	place = models.CharField(max_length=300)
-	photo = models.ImageField(blank=True) #https://wayhome25.github.io/django/2017/05/10/media-file/
-	category = models.ForeignKey(Category, on_delete=models.CASCADE)
+	photo = models.ImageField(blank=True, null=True) #https://wayhome25.github.io/django/2017/05/10/media-file/
+	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
 
-	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
+	explanation = models.CharField(max_length=1000, null=True) # string field 같은 게 있었나?? 찾아보기
 
 class Wishlist(models.Model):
 	userid = models.ForeignKey(User, on_delete=models.CASCADE)

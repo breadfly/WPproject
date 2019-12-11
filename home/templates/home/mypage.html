@@ -1,19 +1,30 @@
-{% extends "home/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
 
-{% block content %}
-    <div>
-		<h1>안녕하세요, {{cid}}님!</h1>
-		<p> <a href="{% url 'modify' %}"> 회원정보 수정 </a> </p>
-		<table border="1">
-		<tr> <th>주문 번호</th> <th>책 이름</th> <th>수량</th> <th>주문 날짜</th></tr>
-		{% for obj in what %}
-			<tr>
-				<td> {{ obj.pid_id }} </td>
-				<td> <a href="{% url 'detail' obj.isbn.category.name obj.isbn.isbn %}">{{obj.isbn.name}}</a> </td>
-				<td> {{obj.num}} </td>
-				<td> {{obj.pid.date}} </td>
-			</tr>	
-		{% endfor %}
-		</table>
-    </div>
-{% endblock content %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ShopShop</title>
+  </head>
+  <body>
+		<div >
+				<div class="form">
+					<form method="POST">
+					{% csrf_token %}
+					{% for field in form.visible_fields %}
+					{% if field.errors %}
+					  {{field.errors}}
+					  {% render_field field id="is-invalid" %}
+					{% else %}
+					  {% render_field field id="is-valid" %}
+					{% endif %}
+					{% endfor %}
+	
+					<button type="submit">MODIFY</button>
+				</form>
+			  </div>
+	  </div>
+	
+  </body>
+</html>

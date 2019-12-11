@@ -30,9 +30,10 @@
         </ul>
       </nav>
       <div class="form">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data" novalidate>
           {% csrf_token %}
           {% for field in form.visible_fields %}
+          {{field.label}}
           {% if field.errors %}
             {{field.errors}}
             {% render_field field id="is-invalid" %}

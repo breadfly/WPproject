@@ -11,12 +11,12 @@
       <nav class="left-nav">
         <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
         <ul>
-          <li><a class="upper" href="my_page.html">Sell</a></li>
-          <li><a class="upper href="my_page.html">Wishlist</a></li>
-          <li><a class="upper" href="my_page.html">My Items</a></li>
-          <li><a class="lower" href="product_market.html">Flea Market</a></li>
-          <li><a class="lower" href="product_auction.html">Auction</a></li>
-          <li><a class="lower" href="product_auction.html">My Account</a></li>
+          <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
+          <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
+          <li><a class="upper"  href="{% url 'myitems' %}">My Items</a></li>
+          <li><a class="lower"  href="{% url 'market' %}">Flea Market</a></li>
+          <li><a class="lower"  href="{% url 'auction' %}">Auction</a></li>
+          <li><a class="lower"  href="{% url 'mypage' %}">My Account</a></li>
           <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </nav>
@@ -35,7 +35,9 @@
             {% for obj in products %}
               <tr>
               <td class="goods_img">
-                <img src="/{{obj.photo.url}}">
+                {% if obj.photo %}
+                <img src="{{obj.photo.url}}">
+                {% endif %}
               </td>
               <td class="goods_info">
                 <p class="goods_name"> {{ obj.name }} </p>

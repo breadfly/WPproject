@@ -21,7 +21,6 @@ from .models import Product
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
 	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
-
 """
 
 class SellForm(forms.ModelForm):
@@ -30,7 +29,13 @@ class SellForm(forms.ModelForm):
 #'selltype', 'expire', 'highest_price', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation'
     class Meta:
         model = Product
-        fields = ['selltype', 'highest_price', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
+        fields = ['selltype', 'expire', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
+
+    def __init__(self, *args, **kwargs):
+        super(SellForm, self).__init__(*args, **kwargs)
+        self.fields['category'].required = False
+        self.fields['explanation'].required = False
+        self.fields['photo'].required = False
 
 
 class RegisterForm(forms.ModelForm):
@@ -104,20 +109,58 @@ class LoginForm(forms.ModelForm):
         model = User
         fields = ['userid', 'pw']
 
+
+class ModifyForm(forms.ModelForm):
+    error_css_class = 'error'
+
+    pw = forms.CharField(required=False,max_length=20, widget=forms.PasswordInput(attrs={'placeholder':'Password'}))
+    username = forms.CharField(required=False,max_length=100, widget=forms.TextInput(attrs={'placeholder':'Name'}))
+    phone = forms.CharField(required=False,max_length=30, widget=forms.TextInput(attrs={'placeholder':'Phone Number'}))
+
+    class Meta:
+        model = User
+        fields = ['pw', 'phone', 'username']
+    def is_valid(self):
+        pw=str(self.data['pw'])
+        username=str(self.data['username'])
+        phone=str(self.data['phone'])
+
+        valid = True
+
+        if len(pw) > 20 :
+            self.add_error('pw', "Password length should be 20 or less")
+            valid= False
+        elif len(pw) < 4 :
+            self.add_error('pw', "Password length should be 4 or more")
+            valid= False
+        elif pw.isalnum() == False :
+            self.add_error('pw', "Password should include only letters and numbers")
+            valid= False
+        elif pw.isdigit() == True or pw.isalpha() == True:
+            self.add_error('pw', "Password must contain at least one number and one letter.")
+            valid =False
+
+        if len(username) > 100 :
+            self.add_error('username', "Name length should be 100 or less")
+            valid= False
+        elif len(username) < 1 :
+            self.add_error('username', "Name length should be 1 or more")
+            valid= False
+        elif username.isalnum() == False :
+            self.add_error('username', "Name should include only letters and numbers")
+            valid= False
+
+        if phone.isdigit() == False:
+            self.add_error('phone', "Phone number should include only numbers")
+            valid= False
+        return valid
+
  ################
 
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
         fields = ['cid', 'pw', 'birthyear', 'gender']
-        widgets = {
-            'pw': forms.PasswordInput,
-        }
-
-class ModifyForm(forms.ModelForm):
-    class Meta:
-        model = Customer
-        fields = ['pw', 'birthyear', 'gender']
         widgets = {
             'pw': forms.PasswordInput,
         }
