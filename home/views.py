@@ -11,12 +11,24 @@ def auction_detail(request, pid):
 	return redirect('/')
 
 def market_detail(request, pid):
+	return redirect('/')
+"""
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+
 	try:
 		product = Product.objects.get(pid=pid)
 	except :
 		raise Http404("Item Does not exist")
-	"""
+	form = PurchaseForm()
+	if request.method == 'POST':
+		form = PurchaseForm(request.POST)
+		try:
 
+		except:
+	"""
+"""
 	form = AddCartForm()
 	cid = request.session.get('cid', False)
 	if request.method == 'POST':
