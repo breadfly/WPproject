@@ -1,38 +1,107 @@
 :root{
   --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
 }
+
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
 body{
   background: #ffe259;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
+
 .main_header {
 text-align:left;
 font-size:25px;
 font-family:sans-serif;
-color:#ffe259;
+color:#050502;
 letter-spacing: 2px;
 padding: 10px 20px 40px 30px;
 -webkit-text-fill-color:transparent;
 -webkit-text-stroke-width:3px;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-.product-page{
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 20px;
-  margin-top: 70px;
-  display: grid;
-  grid-gap: 10px;
-  max-width: 800px;
-  grid-template-areas: "gr1 gr2";
-  margin-left: auto;
-  margin-right: auto;
+.left-nav {
+  width: auto;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 20px;
 }
 
-.box2 input{
+.left-nav ul {
+  width: 150px;
+  display: grid;
+  grid-gap: 15px;
+  text-align: left;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  list-style: none;
+}
+
+.left-nav li {
+  text-align: center;
+}
+
+.left-nav li a.upper {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #E684AE;
+}
+
+.left-nav li a.upper:hover {
+  color: #E684AE;
+  background: white;
+  opacity: 0.8;
+}
+
+.left-nav li a.lower {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #79CBCA;
+}
+
+.left-nav li a.lower:hover {
+  color: #79CBCA;
+  background: white;
+  opacity: 0.8;
+
+}
+
+.left-nav li a.lowest {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #77A1D3;
+}
+
+.left-nav li a.lowest:hover {
+  color: #77A1D3;
+  background: white;
+  opacity: 0.8;
+}
+
+.idx {
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  padding: 5px;
+  color:#575453;
+  font-size: 18px;
+  margin-left: 3px;
+  font-weight: bold;
+}
+.inf{
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -42,13 +111,6 @@ padding: 10px 20px 40px 30px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
-}
-
-.box1{
-  max-width:300px;
-  grid-area: gr1;
-  margin-top: 70px;
-  height: auto;
 }
 
 .box2{
@@ -80,10 +142,6 @@ padding: 10px 20px 40px 30px;
   color: #FFFFFF;
   font-size: 14px;
   float: left;
-}
-
-.inf{
-  text-align: left;
 }
 .btn{
   font-family: "Roboto", sans-serif;

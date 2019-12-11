@@ -1,6 +1,6 @@
 /* Edit here */
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 .cate{
   padding-left: 30%;
@@ -109,6 +109,7 @@ color: #77A1D3;
 background:white;
 opacity: 0.8;
 }
+
 .selectbox{
   margin-left: auto;
   margin-right: auto;
