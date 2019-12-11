@@ -34,41 +34,24 @@
         <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
       </ul>
     </nav>
-    <div class="box2">
-      <form method="POST" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
-        {% for field in form.visible_fields %}
-        <div class="idx">{{field.label}}</div>
-        {% if field.errors %}
-        {{field.errors}}
-        {% render_field field id="is-invalid" %}
-        {% else %}
-        <div class="inf">{% render_field field id="is-valid" %}</div>
-        {% endif %}
-        {% endfor %}
+    <div class="sell-page">
+      <div class="form">
+        <form method="POST" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          {% for field in form.visible_fields %}
+          <div class="idx">{{field.label}}</div>
+          {% if field.errors %}
+          {{field.errors}}
+          {% render_field field id="is-invalid" %}
+          {% else %}
+          <div class="inf">{% render_field field id="is-valid" %}</div>
+          {% endif %}
+          {% endfor %}
 
-        <button type="submit" class="btn">Regisration</button>
-      </form>
+          <button type="submit" class="btn">Regisration</button>
+        </form>
+      </div>
     </div>
-
-    <!-- <div class="box1">
-      <div class="inf">
-        <input type="text" placeholder="Product Name" />
-        <input type="number" placeholder="Price" />
-        <input type="text" placeholder="Seller Name" />
-        <input type="text" placeholder="Phone Number" />
-        <input type="text" placeholder="Trading Place" />
-      </div>
-      <div class="check">
-        <div class="check-form">
-          <input type="checkbox" name="checkbox1" value="Flea Market" onclick="oneCheck(this)">Flea Market
-        </div>
-        <div class="check-form">
-          <input type="checkbox" name="checkbox1" value="Auction" onclick="oneCheck(this)">Auction
-        </div>
-      </div>
-      <button type="button" class="btn">Registration</button>
-    </div> -->
   </div>
 </body>
 
