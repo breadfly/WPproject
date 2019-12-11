@@ -1,19 +1,36 @@
 /* Edit here */
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap&subset=korean');
 
+.cate{
+  padding-left: 30%;
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 18px;
+  position: relative;
+  display: flex;
+  width: auto;
+  text-align: center;
+}
+.cate a{
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  padding: 1em 0;
+  padding-right: 2em;
+  margin: 1em;
+  color: #333;
+  text-shadow: none;
+}
+.cate a:hover{
+  color: #fff;
+  opacity: 0.8;
+}
 .category{
-
+  margin-top: 40px;
 }
 .selectbox{
 }
 /* Edit here */
 
-:root{
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
-}
-
-hr{
-  width:80%;
-}
 body{
   font-family: "Roboto", sans-serif;
 

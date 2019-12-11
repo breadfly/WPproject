@@ -7,9 +7,9 @@
     <title>ShopShop</title>
   </head>
   <body>
+      {% include 'home/productsCategory.html' %}
     <div class="product-page">
       <nav class="left-nav">
-        <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
         <ul>
           <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
           <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
@@ -20,9 +20,7 @@
           <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </nav>
-      <section>
-          {% include 'home/productsCategory.html' %}  
-        <hr>
+      <section>  
           <div class="selectbox">
             <select id="sort-select" onchange="location=this.value;"style="width:200px;height:50px;font-weight:bold;">
               <option class="sort-nothing" value="/">-----------</option>
