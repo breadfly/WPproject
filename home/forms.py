@@ -31,19 +31,37 @@ class AuctionPurchaseForm(forms.Form):
     error_css_class = 'error'
     current_price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Price', 'size':'10'}))
 
+class EditSellForm(forms.ModelForm):
+    pass
+
 class SellForm(forms.ModelForm):
     error_css_class = 'error'
 
 #'selltype', 'expire', 'highest_price', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation'
     class Meta:
         model = Product
-        fields = ['selltype', 'expire', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
+        fields = ['selltype', 'expirechoice', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
 
     def __init__(self, *args, **kwargs):
         super(SellForm, self).__init__(*args, **kwargs)
         self.fields['category'].required = False
         self.fields['explanation'].required = False
         self.fields['photo'].required = False
+        self.fields['expirechoice'].required = False
+
+
+    def is_valid(self):
+        valid = super(SellForm, self).is_valid()
+        
+        basic_price=int(self.data['basic_price'])
+        name = str(self.data['name'])
+        explanation = str(self.data['explanation'])
+        if basic_price < 0:
+            self.add_error('basic_price', "Price should be higher than 0")
+            valid= False
+        elif  basic_price > 2147483647:
+            self.add_error('basic_price', "Price should be lower than 2147483647")
+        return valid
 
 class RegisterForm(forms.ModelForm):
     error_css_class = 'error'

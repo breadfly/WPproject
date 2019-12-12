@@ -22,17 +22,7 @@ urlpatterns = [
     path('sell/', views.sell, name='sell'),
     path('wishlist/', views.wishlist, name='wishlist'),
     path('myitems/', views.myitems, name='myitems'),
-    path('myitems/sell/', views.sellitems, name='sellitems'),
-    path('myitems/buy/', views.buyitems, name='buyitems'),
 
-
-    # past
-    path('cart/', views.cart, name='cart'),
-    path('books/', views.bookList, name='allBooks'),
-    path('books/<category>/', views.bookList, name='books'),
-    path('books/<category>/<isbn>/', views.detail, name='detail'),
-    path('thankyou/', views.purchase, name='purchase'),
-    path('modify/', views.modifyAcc, name='modify'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

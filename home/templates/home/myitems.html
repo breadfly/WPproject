@@ -5,71 +5,91 @@
   <head>
     <meta charset="utf-8">
     <title>ShopShop</title>
-    <link rel="stylesheet" href="{% static 'home/style_product_list.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style_search.css' %}">
   </head>
   <body>
-        <header class="main_header">
-          <h1>ShopShop</h1>
-        </header>
-    <table class="table-area">
-    <thead>
-    <tr>
-        <th scope="cols">Product name</th>
-        <th scope="cols">Current Price</th>
-        <th scope="cols">Wish list Person</th>
-        <th scope="cols">Status</th>
-        <th scope="cols">History</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-    </tr>
-    <tr>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-    </tr><tr>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-    </tr>
-    </tbody>
-  </table>
+    <header class="main_header">
+        <h1>ShopShop</h1>
+      </header>
+      <table class="search_table">
+        <thead>
+          <tr>
+            <th scope="cols">Type</th>
+            <th scope="cols">Product Name</th>
+            <th scope="cols">Current Price</th>
+            <th scope="cols">Expiration</th>
+            <th scope="cols">Buyers</th>
+            <th scope="cols">Trading Place</th>
+            <th scope="cols">Status</th>
+            <th scope="cols">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+          <tr>
+            <td>{% if product.pid.selltype == "A" %} Auction
+                {% else %} Flea Market {% endif %}</td>
+            <td>{{ product.pid.name }}</td>
+            <td>{{ product.pid.current_price }}</td>
+            <td>{{ product.pid.expire }}</td>
+            <td>{{product.userid.username}}</td>
+            <td>{{ product.pid.place}}</td>
+            <td>{% if product.pid.expire <  %} Auction
+                {% else %} Flea Market {% endif %}</td>
+            <td><button type="button" onclick="window.open('{% url 'detail' product.pid.pid %}')">Detail</button>
+                <button type="button" onclick="window.open('{% url 'detail' product.pid.pid %}')">Modify</button></td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+          </tr>
 
-  {% for obj in products %}
-  {{ obj.name }}
-  {{ obj.highest_price }}
-    {% endfor %}
-
+          <tr>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+          <tr>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+          </tr>
+          <tr>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+          <tr>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+            <td class="even">--</td>
+          </tr>
+          <tr>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+        </tbody>
+      </table>
   </body>
 </html>

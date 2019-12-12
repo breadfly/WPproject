@@ -8,30 +8,33 @@
     <link rel="stylesheet" href="{% static 'home/style_product_list.css' %}">
   </head>
   <body>
-        <header class="main_header">
+    {% if request.get_full_path == "/wishlist/?page=buy" %}
+      <label><input type="radio" name="chk" value="?page=wish" onchange="location = this.value;">WISHLIST</label>
+      <label><input type="radio" name="chk" value="?page=buy" checked="checked" onchange="location = this.value;">BUY</label>
+    {% else %}
+    <label><input type="radio" name="chk" value="?page=wish" checked="checked" onchange="location = this.value;">WISHLIST</label>
+    <label><input type="radio" name="chk" value="?page=buy" onchange="location = this.value;">BUY</label>
+    {%  endif %}
+
+
+    <header class="main_header">
           <h1>ShopShop</h1>
         </header>
     <table class="table-area">
     <thead>
     <tr>
-      {% if type == "wishlist" %}
         <th scope="cols">Type</th>
         <th scope="cols">Product name</th>
+        {% if request.get_full_path == "/wishlist/?page=buy" %}
+        <th scope="cols">My Price</th>
+        {% endif %}
         <th scope="cols">Current Price</th>
         <th scope="cols">Seller</th>
         <th scope="cols">Phone</th>
         <th scope="cols">Trading Place</th>
-      {% else %}
-      <th scope="cols">Product name</th>
-      <th scope="cols">Current Price</th>
-      <th scope="cols">Wish list Person</th>
-      <th scope="cols">Status</th>
-      <th scope="cols">History</th>
-      {% endif %}
     </tr>
     </thead>
     <tbody>
-      {% if type == "wishlist" %}
         {% for obj in wishlist %}
       <tr onclick="window.open('{% url 'detail' obj.pid.pid %}')">
         {% if forloop.counter|divisibleby:2 %}
@@ -40,6 +43,9 @@
           {% else %} Flea Market {% endif %}
         </td>
         <td> {{ obj.pid.name }} </td>
+        {% if request.get_full_path == "/wishlist/?page=buy" %}
+        <td> {{ obj.price}} </td>
+        {% endif %}
         <td> {{obj.pid.current_price}} </td>
         <td> {{ obj.pid.seller.username }} </td>
         <td> {{ obj.pid.seller.phone }} </td>
@@ -50,6 +56,9 @@
             {% else %} Flea Market {% endif %}  
         </td>
         <td class=even> {{ obj.pid.name }} </td>
+        {% if request.get_full_path == "/wishlist/?page=buy" %}
+        <td class=even> {{ obj.price}} </td>
+        {% endif %}
         <td class=even> {{obj.pid.current_price}} </td>
         <td class=even> {{ obj.pid.seller.username }} </td>
         <td class=even> {{ obj.pid.seller.phone }} </td>
@@ -58,25 +67,6 @@
       </tr>
       {% endfor %}
 
-      {% else %}
-      {% for obj in products %}
-      <tr>
-        {% if forloop.counter|divisibleby:2 %}
-        <td>  {{ obj.pid.name }}  </td>
-        <td> {{obj.pid.current_price}} </td>
-        <td> {{ obj.pid.seller.userid }} </td>
-        <td> {{ obj.pid.seller.userid }} </td>
-        <td> {{ obj.pid.seller.userid }} </td>
-        {% else %}
-        <td class="even">  {{ obj.pid.name }}  </td>
-        <td class="even"> {{obj.pid.current_price}} </td>
-        <td class="even"> {{ obj.pid.seller.userid }} </td>
-        <td class="even"> {{ obj.pid.seller.userid }} </td>
-        <td  class="even"> {{ obj.pid.seller.userid }} </td>
-        {% endif %}
-      </tr>
-      {% endfor %}
-      {% endif %}
     </tbody>
   </table>
 

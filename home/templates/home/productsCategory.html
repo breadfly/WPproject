@@ -1,9 +1,9 @@
 {%load static%}
 <nav class="cate">
 	<a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:100px;" alt="LOGO_IMG"></a>   
-	<a href="{% url 'allBooks' %}"><p class="category">전체</p></a>
+	<a href="{% url 'market' %}"><p class="category">전체</p></a>
 	{% for obj in categories %}
-		<p class="category"><a href="{% url 'books' obj.name %}">{{obj.name}}</a></p>
+		<p class="category"><a href="{% url 'marketcategory' obj.name %}">{{obj.name}}</a></p>
 	{% endfor %}
 </nav>
 {%load static%}

@@ -21,9 +21,9 @@ class Product(models.Model):
 	selltype = models.CharField(max_length=1, default='F', choices=SELLTYPES)
 	STATUSTYPES = (('S', 'Sold'), ('E', 'Expired'), ('R', 'Running')) # 팔림, 안팔림, 현재진행형
 	statustype = models.CharField(max_length=1, default='R', choices=STATUSTYPES)
-	EXPIREDATE = ((datetime.now() + timedelta(days=3), '3 Days'), (datetime.now() + timedelta(days=7), '7 days'),
-	(datetime.now() + timedelta(days=30), '30 days'))
-	expire = models.DateTimeField(default=datetime.now() + timedelta(days=1), choices=EXPIREDATE)
+	EXPIREDATE = (('3', '3 Days'), ('7', '7 days'), ('0', '30 days'))
+	expirechoice = models.CharField(max_length=1, default='3', choices=EXPIREDATE)
+	expire = models.DateTimeField(default=timezone.now() + timedelta(days=3))
 	highest_price = models.IntegerField(default=0) # auction이더라도 천장 가격 내면 바로 살 수 있게 하자
 	basic_price =  models.IntegerField(default=0) #옥션이라도 최저가 쓰게 하자
 	current_price = models.IntegerField(default=0) # 마지막 가격이기도 하지
