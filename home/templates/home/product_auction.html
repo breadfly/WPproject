@@ -22,7 +22,6 @@
 
       <table class="goods_table">
           {% for obj in products %}
-          <a href="{% url 'market_detail' obj.pid %}" >
             <tr onclick ="location.href='{% url 'detail' obj.pid %}'">
                 <td class="goods_img">
                   {% if obj.photo %}
@@ -42,7 +41,6 @@
                   <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
                 </td>
               </tr>
-            </a>
             {% endfor %}
         </table>
   </div>
