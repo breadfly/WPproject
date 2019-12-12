@@ -194,7 +194,7 @@ def auction(request, category='', search=''):
 			products = Product.objects.filter(category__name=category,
 				selltype='A', buyer=None, expire__gte=timezone.now())
 
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories, 'type':'auction'})
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories, 'pagetype':'auction'})
 
 def sell(request):
 	userid = request.session.get('userid', False)
