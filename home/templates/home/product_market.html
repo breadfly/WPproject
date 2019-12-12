@@ -7,6 +7,12 @@
     <title>ShopShop</title>
   </head>
   <body>
+    {% if type== "market" %}
+    마켓인 경우
+    market page라는 표시??로고?? 좀 있으면 좋겠음(둘이 디자인이 같아서) 귀찮으면 걍 이 if절 삭제 ㄱㄱ
+    {% else %}
+    옥션인 경우
+    {% endif %}
     <div class="product-page">
     <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
         <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>

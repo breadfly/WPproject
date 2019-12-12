@@ -78,8 +78,19 @@ def myitems(request):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
-	myitems = Product.objects.filter(buyer__userid=userid)
-	return render(request, 'home/myitems.html', {'products':myitems})
+	return redirect('/myitems/buy')
+
+def sellitems(request):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	return render(request, 'home/search.html')
+
+def buyitems(request):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	return render(request, 'home/search.html')
 
 def market(request, category=''):
 	userid = request.session.get('userid', False)
@@ -131,7 +142,7 @@ def market(request, category=''):
 			products = Product.objects.filter(category__name=category,
 				selltype='F', buyer=None, expire__gte=timezone.now())
 
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories, 'type':'market'})
 
 def auction(request, category='', search=''):
 	userid = request.session.get('userid', False)
@@ -183,7 +194,7 @@ def auction(request, category='', search=''):
 			products = Product.objects.filter(category__name=category,
 				selltype='A', buyer=None, expire__gte=timezone.now())
 
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories, 'type':'auction'})
 
 def sell(request):
 	userid = request.session.get('userid', False)

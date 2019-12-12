@@ -20,9 +20,11 @@ urlpatterns = [
     path('detail/<pid>/', views.detail, name='detail'),
 
     path('sell/', views.sell, name='sell'),
-    path('myitems/', views.myitems, name='myitems'),
-
     path('wishlist/', views.wishlist, name='wishlist'),
+    path('myitems/', views.myitems, name='myitems'),
+    path('myitems/sell/', views.sellitems, name='sellitems'),
+    path('myitems/buy/', views.buyitems, name='buyitems'),
+
 
     # past
     path('cart/', views.cart, name='cart'),
