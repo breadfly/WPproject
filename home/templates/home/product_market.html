@@ -7,15 +7,22 @@
     <title>ShopShop</title>
   </head>
   <body>
+    {% if pagetype == "market" %}
+    마켓인 경우
+    market page라는 표시??로고?? 좀 있으면 좋겠음(둘이 디자인이 같아서) 귀찮으면 걍 이 if절 삭제 ㄱㄱ
+    {% else %}
+    옥션인 경우
+    {% endif %}
     <div class="product-page">
     <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
         <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
         <ul>
           <li>
-            <form method="POST">
-              {{ msg }}
-              {{ form.search }}
-              {% csrf_token %}
+            <form method="GET" action="">
+              <input type="text" name="seller" placeholder="seller">
+              <input type="text" name="name" placeholder="name">
+              <input type="number" name="lower" placeholder="lower price">
+              <input type="number" name="higher" placeholder="higher price">
               <button type="submit" class="btn">SEARCH</button>
             </form>
           </li>
@@ -41,7 +48,7 @@
     
           <table class="goods_table">
             {% for obj in products %}
-              <tr onclick ="location.href='{% url 'detail' obj.pid %}'">
+              <tr>
                   <td class="goods_img">
                     {% if obj.photo %}
                     <img src="{{obj.photo.url}}">
@@ -55,7 +62,10 @@
                         <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
                         <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
                     </div>
-                    <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
+                    <button type="button" class="market_btn"
+                    onclick="window.open('{% url 'detail' obj.pid %}')">New Page</button>
+                    <button type="button" class="market_btn"
+                    onclick="location.href='{% url 'detail' obj.pid %}'">Current Page</button>
                   </td>
                 </tr>
               {% endfor %}
