@@ -13,7 +13,10 @@
         <ul>
           <li>
             <form method="POST">
-              {{ form.search }}
+                {{ form.seller }}
+                {{ form.name }}
+                {{form.lower}}
+                {{form.higher}}
               {% csrf_token %}
               <button type="submit" class="btn">SEARCH</button>
             </form>
