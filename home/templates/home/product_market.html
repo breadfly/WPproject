@@ -1,56 +1,61 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="{% static 'home/style_product_market.css' %}">
-  <title>ShopShop</title>
-</head>
-
-<body>
-  {% include 'home/productsCategory.html' %}
-  <div class="product-page">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'home/style_product_market.css' %}">
+    <title>ShopShop</title>
+  </head>
+  <body>
+    <div class="product-page">
     <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
-      <ul>
-        <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
-        <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
-        <li><a class="upper" href="{% url 'myitems' %}">My Items</a></li>
-        <li><a class="lower" href="{% url 'market' %}">Flea Market</a></li>
-        <li><a class="lower" href="{% url 'auction' %}">Auction</a></li>
-        <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
-        <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
-      </ul>
-    </nav>
-    <div class="selectbox" style="width:100px;height:30px;font-weight:bold;">
-      <select id="sort-select" onchange="location=this.value;">
-        <option class="sort-nothing" value="/">-----------</option>
-        <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
-        <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
-      </select>
-    </div>
-    <table class="goods_table">
-      {% for obj in products %}
-      <tr>
-        <td class="goods_img">
-          {% if obj.photo %}
-          <img src="{{obj.photo.url}}" style="height: 300px; width: auto; padding: 10px">
-          {% endif %}
-        </td>
-        <td class="goods_info">
-          <p class="goods_name"> {{ obj.name }} </p>
-          <div class="inf">
-            <p class="goods_price"> <strong> Price </strong> {{ obj.basic_price }} </p>
-            <p class="seller_name"> <strong> Seller </strong> {{ obj.seller.username }} </p>
-            <p class="phone_number"> <strong> Phone Number </strong> {{ obj.seller.phone}} </p>
-            <p class="trading_place"> <strong> Trading Place </strong> {{ obj.place }} </p>
+        <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
+        <ul>
+          <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
+          <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
+          <li><a class="upper"  href="{% url 'myitems' %}">My Items</a></li>
+          <li><a class="lower"  href="{% url 'market' %}">Flea Market</a></li>
+          <li><a class="lower"  href="{% url 'auction' %}">Auction</a></li>
+          <li><a class="lowest"  href="{% url 'mypage' %}">My Account</a></li>
+          <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </nav>
+      <section>
+          {% include 'home/productsCategory.html' %}  
+        <hr>
+          <div class="selectbox">
+            <select id="sort-select" onchange="location=this.value;"style="width:200px;height:50px;font-weight:bold;">
+              <option class="sort-nothing" value="/">-----------</option>
+              <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
+              <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
+            </select>
           </div>
-          <button type="button" class="market_btn">Put Wish List</button><button type="button"
-            class="market_btn">Buy</button>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
+    
+          <table class="goods_table">
+            {% for obj in products %}
+            <a href="{% url 'market_detail' obj.pid %}" >
+              <tr onclick ="location.href='{% url 'market_detail' obj.pid %}'">
+                  <td class="goods_img">
+                    {% if obj.photo %}
+                    <img src="{{obj.photo.url}}">
+                    {% endif %}
+                  </td>
+                  <td class="goods_info">
+                    <p class="goods_name"> {{ obj.name }} </p>
+                    <div class="inf">
+                        <p class="goods_price"> <strong> PRICE </strong> {{ obj.basic_price }} </p>
+                        <p class="seller_name"> <strong> SELLER </strong> {{ obj.seller.username }} </p>
+                        <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
+                        <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
+                    </div>
+                    <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
+                  </td>
+                </tr>
+              </a>
+              {% endfor %}
+          </table>
+    
+        </section>
   </div>
 </body>
 
