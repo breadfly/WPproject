@@ -1,6 +1,6 @@
 /* Edit here */
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
 
 .cate{
   padding-left: 30%;
@@ -31,7 +31,6 @@
 /* Edit here */
 
 body{
-  font-family: "Roboto", sans-serif;
   background: #77A1D3;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -63,13 +62,14 @@ padding: 10px 20px 40px 30px;
   display: grid;
   grid-gap: 15px;
   text-align: left;
-  font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   list-style: none;
 }
 
 .left-nav li{
   text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -161,22 +161,9 @@ td{
 .market_btn:hover{
   background: #0083B0;
 }
-
 @media (max-width: 1070px) {
-  .cate{
-    padding-left: 10%;
-    font-family: 'Do Hyeon', sans-serif;
-    font-size: 17px;
-    position: relative;
-    display: flex;
-    width: auto;
-    text-align: center;
-  }
-  .selectbox{
-    margin-right: 3rem;
-  }
   table{
-    margin-right: 2rem;
+    margin-right: 4rem;
     width: 300px;
     max-width: 400px;
     height: auto;
@@ -184,6 +171,34 @@ td{
     color: #575453;
   }
   .goods_info{
+    display: none;
+  }
+}
+@media (max-width: 870px) {
+  .cate p{
+    display: none;
+  }
+  .cate img{
+    padding-left: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .selectbox{
+    display: none;
+  }
+  table{
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    max-width: 400px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #575453;
+  }
+  .goods_info{
+    display: none;
+  }
+  .left-nav{
     display: none;
   }
 }

@@ -7,23 +7,13 @@
 
 <head>
   <meta charset="utf-8">
-  <script type="text/javascript">
-    function oneCheck(a) {
-      var obj = document.getElementsByName("checkbox1");
-      for (var i = 0; i < obj.length; i++) {
-        if (obj[i] != a) {
-          obj[i].checked = false;
-        }
-      }
-    }
-  </script>
   <link rel="stylesheet" href="{% static 'home/style_product_registration.css' %}">
   <title>ShopShop</title>
 </head>
 
 <body>
   <div class="product-page">
-    <nav class="left-nav" style="position: fixed; left:0px; top:30%">
+    <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
       <ul>
         <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
         <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>

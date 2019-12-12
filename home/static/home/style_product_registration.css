@@ -3,7 +3,6 @@
 }
 
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 body{
   background: #ffe259;  /* fallback for old browsers */
@@ -37,13 +36,15 @@ padding: 10px 20px 40px 30px;
   display: grid;
   grid-gap: 15px;
   text-align: left;
-  font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   list-style: none;
 }
 
 .left-nav li {
   text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .left-nav li a.upper {
@@ -108,7 +109,7 @@ padding: 10px 20px 40px 30px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 .form input {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -119,7 +120,7 @@ padding: 10px 20px 40px 30px;
   font-size: 14px;
 }
 .form button {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #00B4DB;
@@ -146,7 +147,7 @@ padding: 10px 20px 40px 30px;
   text-decoration: none;
 }
 .idx {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-align: left;
   padding: 5px;
   color:#575453;
@@ -154,7 +155,7 @@ padding: 10px 20px 40px 30px;
   margin-left: 3px;
 }
 .btn{
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #00B4DB;
@@ -169,4 +170,9 @@ padding: 10px 20px 40px 30px;
 }
 .btn:hover {
   background: #0083B0;
+}
+@media (max-width: 870px) {
+  .left-nav{
+    display: none;
+  }
 }
