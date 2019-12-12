@@ -101,8 +101,21 @@ def market(request, category=''):
 	if request.method == 'GET':
 		seller = str(request.GET.get('seller', ''))
 		name = str(request.GET.get('name', ''))
-		lower = int(request.GET.get('lower', '0'))
-		higher = int(request.GET.get('higher', '0'))
+		temp = request.GET.get('lower', '')
+		if temp == '':
+			lower = 0
+		elif temp.isdecimal():
+			lower = int(temp)
+		else:
+			return redirect('/market')
+		temp = request.GET.get('higher', '')
+		if temp == '':
+			higher = 2147483647
+		elif temp.isdecimal():
+			higher = int(temp)
+		else:
+			return redirect('/market')
+
 		if category == 'all':
 			products = Product.objects.filter(selltype='F',
 				buyer=None, expire__gte=timezone.now(),
