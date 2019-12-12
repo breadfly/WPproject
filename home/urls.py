@@ -18,7 +18,8 @@ urlpatterns = [
     path('myitems/', views.myitems, name='myitems'),
     path('auction/<pid>/', views.auction_detail, name='auction_detail'),
     path('market/<pid>/', views.market_detail, name='market_detail'),
-    path('wishlist/', views.wishlist, name='wishlist'),
+    path('wishlist/market/', views.wishlistMarket, name='wishlistMarket'),
+    path('wishlist/auction/', views.wishlistAuction, name='wishlistAuction'),
     # past
     path('cart/', views.cart, name='cart'),
     path('books/', views.bookList, name='allBooks'),

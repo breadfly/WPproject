@@ -40,6 +40,11 @@ class Product(models.Model):
 class Wishlist(models.Model):
 	userid = models.ForeignKey(User, on_delete=models.CASCADE)
 	pid = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+class Candidate(models.Model):
+	userid = models.ForeignKey(User, on_delete=models.CASCADE)
+	pid = models.ForeignKey(Product, on_delete=models.CASCADE)
+	price = models.IntegerField(default=0) # 마지막 가격이기도 하지
 	# 플리마켓은 필요없고
 	# expire time 끝나는 순간에 보는거야.
 	# 야!! 지금 이 expire time인데 wishlist에 이거 넣은놈들 다 나와바

@@ -7,8 +7,30 @@ from .forms import *
 from .models import *
 from django.db.models import Count
 
+def wishlist(request):
+	return redirect('/wishlist/market')
+
 def auction_detail(request, pid):
-	return redirect('/')
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	form = AuctionPurchaseForm()
+	if request.method == 'POST':
+		form = AuctionPurchaseForm(request.POST)
+		if 'buy' in form.data:
+			product = Product.objects.get(pid=pid)
+			if product.current_price < int(form.data['current_price']):
+				product.current_price = form.data['current_price']
+			candidate = Candidate.objects.create(userid=User.objects.get(userid=userid),
+				pid = product, price=form.data['current_price'])
+			candidate.save()
+			return redirect('/myitems')
+		elif 'wish' in form.data:
+			wishlist = Wishlist.objects.create(userid=User.objects.get(userid=userid),
+				pid = Product.objects.get(pid=pid))
+			wishlist.save()
+			return redirect('/wishlist')
+	return render(request, 'home/auction_detail.html', {'form':form})
 
 def market_detail(request, pid):
 	userid = request.session.get('userid', False)
@@ -35,12 +57,19 @@ def logout(request):
 		del request.session['userid']
 	return redirect('/')
 
-def wishlist(request):
+def wishlistMarket(request):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
 	wishlist = Wishlist.objects.filter(userid__userid=userid)
-	return render(request, 'home/wishlist.html', {'products':wishlist})
+	return render(request, 'home/wishlist.html', {'type':'market', 'products':wishlist})
+
+def wishlistAuction(request):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	wishlist = Candidate.objects.filter(userid__userid=userid)
+	return render(request, 'home/wishlist.html', {'type':'auction', 'products':wishlist})
 
 def myitems(request):
 	userid = request.session.get('userid', False)
@@ -56,9 +85,9 @@ def market(request, category=''):
 	categories = Category.objects.values('name').distinct()
 	products = None
 	if category == '':
-		products = Product.objects.all()
+		products = Product.objects.filter(selltype='F', buyer=None, expire__gte=datetime.now())
 	else :
-		products = Product.objects.filter(category__name=category)
+		products = Product.objects.filter(category__name=category, selltype='F', buyer=None, expire__gte=datetime.now())
 	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
 
 def auction(request, category=''):
@@ -68,10 +97,10 @@ def auction(request, category=''):
 	categories = Category.objects.values('name').distinct()
 	products = None
 	if category == '':
-		products = Product.objects.all()
+		products = Product.objects.filter(selltype='A', buyer=None, expire__gte=datetime.now())
 	else :
-		products = Product.objects.filter(category__name=category)
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+		products = Product.objects.filter(category__name=category, selltype='A', buyer=None, expire__gte=datetime.now())
+	return render(request, 'home/product_auction.html', {'products':products, 'categories':categories})
 
 def sell(request):
 	userid = request.session.get('userid', False)

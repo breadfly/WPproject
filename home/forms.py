@@ -27,7 +27,8 @@ class MarketPurchaseForm(forms.Form):
     pass
 
 class AuctionPurchaseForm(forms.Form):
-    pass
+    error_css_class = 'error'
+    current_price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Price', 'size':'10'}))
 
 class SellForm(forms.ModelForm):
     error_css_class = 'error'
