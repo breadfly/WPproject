@@ -4,72 +4,45 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <script type="text/javascript">
-      function oneCheck(a){
-        var obj = document.getElementsByName("checkbox1");
-        for(var i=0; i<obj.length; i++){
-          if(obj[i]!=a){
-            obj[i].checked=false;
-          }
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="{% static 'home/style_product_registration.css' %}">
-    <title>ShopShop</title>
-  </head>
-  <body>
-    <div class="product-page">
-      <nav class="left-nav">
-        <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
-        <ul>
-          <li><a href="product_market.html">Flea Market</a></li>
-          <li><a href="product_auction.html">Auction</a></li>
-          <li><a href="search.html">Search Product</a></li>
-        </ul>
-      </nav>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="{% static 'home/style_product_registration.css' %}">
+  <title>ShopShop</title>
+</head>
+
+<body>
+  <div class="product-page">
+    <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
+      <ul>
+        <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
+        <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
+        <li><a class="upper" href="{% url 'myitems' %}">My Items</a></li>
+        <li><a class="lower" href="{% url 'market' %}">Flea Market</a></li>
+        <li><a class="lower" href="{% url 'auction' %}">Auction</a></li>
+        <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
+        <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="sell-page">
       <div class="form">
-          <form method="POST" enctype="multipart/form-data" novalidate>
+        <form method="POST" enctype="multipart/form-data" novalidate>
           {% csrf_token %}
           {% for field in form.visible_fields %}
-          {{field.label}}
+          <div class="idx">{{field.label}}</div>
           {% if field.errors %}
-            {{field.errors}}
-            {% render_field field id="is-invalid" %}
+          {{field.errors}}
+          {% render_field field id="is-invalid" %}
           {% else %}
-            {% render_field field id="is-valid" %}
+          <div class="inf">{% render_field field id="is-valid" %}</div>
           {% endif %}
           {% endfor %}
 
-          <button type="submit">SELL</button>
-      </form>
+          <button type="submit" class="btn">Regisration</button>
+        </form>
+      </div>
     </div>
+  </div>
+</body>
 
-      <div class="box1">
-        <div class="photo-area" width="300px" height="300px">
-          <img src="cap.png" alt="goods_IMG" width="300px">
-        </div>
-        <button type="button" class="btn">Photo Upload</button>
-      </div>
-      <div class="box2">
-        <div class="inf">
-          <input type="text" placeholder="Product Name"/>
-          <input type="number" placeholder="Price"/>
-          <input type="text" placeholder="Seller Name"/>
-          <input type="text" placeholder="Phone Number"/>
-          <input type="text" placeholder="Trading Place"/>
-        </div>
-        <div class="check">
-          <div class="check-form">
-            <input type="checkbox" name="checkbox1" value="Flea Market" onclick="oneCheck(this)">Flea Market
-          </div>
-          <div class="check-form">
-            <input type="checkbox" name="checkbox1" value="Auction" onclick="oneCheck(this)">Auction
-          </div>
-        </div>
-        <button type="button" class="btn">Registration</button>
-      </div>
-    </div>
-  </body>
 </html>

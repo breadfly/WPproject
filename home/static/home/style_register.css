@@ -51,19 +51,6 @@ body{
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.check-form{
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #00B4DB;
-  width: 30%;
-  border: 0;
-  margin: 0 5px 10px 20px;
-  padding: 10px;
-  color: #FFFFFF;
-  font-size: 14px;
-  float: left;
-}
 
 .form button:hover,.form button:active,.form button:focus {
   background: #0083B0;
@@ -76,18 +63,4 @@ body{
 .form .message a {
   color: #0083B0;
   text-decoration: none;
-}
-.id-form{
-  float: left;
-  padding-right: 5px;
-}
-.id-form input{
-  float: left;
-  width: 100%;
-  padding-right: 5px;
-}
-.id-form button{
-  float: left;
-  width: 120%;
-  margin: 0;
 }

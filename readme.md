@@ -29,9 +29,17 @@
 * market
 	* 중고장터 페이지, 로그인 후 메인페이지이기도 함
 	* 옆에 navigation은 로그인 후 다른 페이지에서도 계속 공통적으로 보였으면 함
-	* Sell - Wishlist - My Items / Flea Market - Auction / My account - Logout 색깔 각각 달랐으면 좋겠음
+	* Sell - Wishlist - My Items / Flea Market - Auction / My account - Logout 색깔 각각 달랐으면 좋겠음 -> 색깔 변경 완료
+	* 상단 카테고리 디자인
+	* 사이드 navigation 스크롤해도 고정되게 함
+	* table 크기 및 정렬
+	* 반응형페이지로 화면이 가로로 좁아지면 이미지만 보이게 설정, 각 요소들 겹치지 않게 조정
+	
 * sell
 	* 사진 대체 어케 올림???? 돌겠노ㅁㄴㅇㄹ
+	* 사이드 navigation 추가함
+	* form css 작성 -> 카테고리 형식으로 입력받는 애들이 적용이안된당ㅠㅠ
+	* 반응형페이지로 만듦
 * auction
 	* 경매 페이지
 * detail

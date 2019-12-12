@@ -49,6 +49,18 @@ def myitems(request):
 	myitems = Product.objects.filter(buyer__userid=userid)
 	return render(request, 'home/myitems.html', {'products':myitems})
 
+def market(request, category=''):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	categories = Category.objects.values('name').distinct()
+	products = None
+	if category == '':
+		products = Product.objects.all()
+	else :
+		products = Product.objects.filter(category__name=category)
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+
 def auction(request, category=''):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
@@ -85,18 +97,6 @@ def sell(request):
 	else:
 		form = SellForm()
 	return render(request, 'home/product_registration.html', {'form':form})
-
-def market(request, category=''):
-	userid = request.session.get('userid', False)
-	if userid == False : # 로그인 안되어있으면
-		return redirect('/login')
-	categories = Category.objects.values('name').distinct()
-	products = None
-	if category == '':
-		products = Product.objects.all()
-	else :
-		products = Product.objects.filter(category__name=category)
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
 
 def register(request):
 	userid = request.session.get('userid', False)

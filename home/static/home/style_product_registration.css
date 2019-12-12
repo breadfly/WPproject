@@ -1,39 +1,111 @@
-:root{
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
-}
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
+
 body{
   background: #ffe259;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
+
 .main_header {
 text-align:left;
 font-size:25px;
 font-family:sans-serif;
-color:#ffe259;
+color:#050502;
 letter-spacing: 2px;
 padding: 10px 20px 40px 30px;
 -webkit-text-fill-color:transparent;
 -webkit-text-stroke-width:3px;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-.product-page{
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 20px;
-  margin-top: 70px;
-  display: grid;
-  grid-gap: 10px;
-  max-width: 800px;
-  grid-template-areas: "gr1 gr2";
-  margin-left: auto;
-  margin-right: auto;
+.left-nav {
+  width: auto;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 20px;
 }
 
-.box2 input{
-  font-family: "Roboto", sans-serif;
+.left-nav ul {
+  width: 150px;
+  display: grid;
+  grid-gap: 15px;
+  text-align: left;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  list-style: none;
+}
+
+.left-nav li {
+  text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.left-nav li a.upper {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #E684AE;
+}
+
+.left-nav li a.upper:hover {
+  color: #E684AE;
+  background: white;
+  opacity: 0.8;
+}
+
+.left-nav li a.lower {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #79CBCA;
+}
+
+.left-nav li a.lower:hover {
+  color: #79CBCA;
+  background: white;
+  opacity: 0.8;
+
+}
+
+.left-nav li a.lowest {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #77A1D3;
+}
+
+.left-nav li a.lowest:hover {
+  color: #77A1D3;
+  background: white;
+  opacity: 0.8;
+}
+
+.sell-page {
+  width: 360px;
+  padding-top: 150px;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -43,50 +115,43 @@ padding: 10px 20px 40px 30px;
   box-sizing: border-box;
   font-size: 14px;
 }
-
-.box1{
-  max-width:300px;
-  grid-area: gr1;
-  margin-top: 70px;
-  height: auto;
-}
-
-.box2{
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto;
-  padding: 45px;
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-  color: #575453;
-  grid-area: gr2;
-  width: 400px;
-  height: auto;
-}
-.check{
-  margin-left: 55px;
-}
-.check-form{
-  font-family: "Roboto", sans-serif;
+.form button {
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #00B4DB;
-  width: 35%;
+  width: 100%;
   border: 0;
-  margin: 5px;
-  padding: 10px;
+  padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
-  float: left;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
 }
 
-.inf{
+.form button:hover,.form button:active,.form button:focus {
+  background: #0083B0;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #0083B0;
+  text-decoration: none;
+}
+.idx {
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-align: left;
+  padding: 5px;
+  color:#575453;
+  font-size: 17px;
+  margin-left: 3px;
 }
 .btn{
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: #00B4DB;
@@ -101,4 +166,9 @@ padding: 10px 20px 40px 30px;
 }
 .btn:hover {
   background: #0083B0;
+}
+@media (max-width: 870px) {
+  .left-nav{
+    display: none;
+  }
 }

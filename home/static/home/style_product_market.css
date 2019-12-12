@@ -1,28 +1,41 @@
 /* Edit here */
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
 
-.category{
 
+.cate{
+  padding-left: 30%;
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 20px;
+  position: relative;
+  display: flex;
+  width: auto;
+  text-align: center;
 }
-.selectbox{
+.cate a{
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  padding: 1em 0;
+  padding-right: 2em;
+  margin: 1em;
+  color: #333;
+  text-shadow: none;
+}
+.cate a:hover{
+  color: #fff;
+  opacity: 0.8;
+}
+.category{
+  margin-top: 40px;
 }
 /* Edit here */
 
-:root{
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
-}
-
-hr{
-  width:80%;
-}
 body{
-  font-family: "Roboto", sans-serif;
-
   background: #77A1D3;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .main_header {
 text-align:left;
@@ -34,93 +47,163 @@ padding: 10px 20px 40px 30px;
 -webkit-text-fill-color:transparent;
 -webkit-text-stroke-width:3px;
 }
-
-.product-page{
-  display: flex;
-}
-
-.left-nav{
-  width:300px;
+.left-nav {
+  width: auto;
   align-content: center;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  text-align:center;
-  padding-right:20px;
-}
-.left-nav img{
-  padding-left:75px;
-}
-section{
-  width:100%;
-}
-
-.left-nav ul{
-  width:100%;
-  display:grid;
-  grid-gap:15px;
-  text-align:left;
-  font-size:18px;
-  list-style:none;
-}
-.left-nav li{
   text-align: center;
-
-}
-.left-nav li a{
-    color:#ffffff;
-    text-decoration:none;
-    display:block;
-    padding:10px;
-    border-radius:25px;
-    background-color: #77A1D3;
-}
-.left-nav li a:hover{
- color: #77A1D3;
-    background-color: #E684AE;
-  background:white;
+  padding-right: 20px;
 }
 
+.left-nav ul {
+  width: 150px;
+  display: grid;
+  grid-gap: 15px;
+  text-align: left;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  list-style: none;
+}
+
+.left-nav li {
+  text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.left-nav li a.upper {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #E684AE;
+}
+
+.left-nav li a.upper:hover {
+  color: #E684AE;
+  background: white;
+  opacity: 0.8;
+}
+
+.left-nav li a.lower {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #79CBCA;
+}
+
+.left-nav li a.lower:hover {
+  color: #79CBCA;
+  background: white;
+  opacity: 0.8;
+
+}
+
+.left-nav li a.lowest {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #77A1D3;
+}
+
+.left-nav li a.lowest:hover {
+  color: #77A1D3;
+  background: white;
+  opacity: 0.8;
+}
+
+.selectbox{
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 40%;
+}
 table{
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 450px;
+  max-width: 60%;
+  height: auto;
   background-color: rgba(255, 255, 255, 0.2);
   color: #575453;
-  float:right;
-  margin-right:25px;
-  width:75%;
-  min-width:450px;
-  border-top:5px dotted #77A1D3;
-  border-collapse:collapse;
 }
 td{
-  border-bottom:5px dotted #77A1D3;
   padding:10px;
 }
 .goods_name{
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   color: #575453;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-align: left;
   margin-left: 1rem;
 }
 .goods_info{
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-align:left;
+  font-size: 15px;
   padding-left:0.5rem;
 }
 .market_btn{
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   outline: 0;
   background: #00B4DB;
   width: 45%;
   border: 0;
-  padding: 13px;
+  padding: 10px;
   color: #ffffff;
-  margin: 3px;
-  font-size: 14px;
+  margin:3px;
+  font-size: 13px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
 }
 .market_btn:hover{
   background: #0083B0;
+}
+@media (max-width: 1070px) {
+  table{
+    margin-right: 4rem;
+    width: 300px;
+    max-width: 400px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #575453;
+  }
+  .goods_info{
+    display: none;
+  }
+}
+@media (max-width: 870px) {
+  .cate p{
+    display: none;
+  }
+  .cate img{
+    padding-left: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .selectbox{
+    display: none;
+  }
+  table{
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    max-width: 400px;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #575453;
+  }
+  .goods_info{
+    display: none;
+  }
+  .left-nav{
+    display: none;
+  }
 }

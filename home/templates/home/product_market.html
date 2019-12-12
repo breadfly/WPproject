@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="product-page">
-      <nav class="left-nav">
+    <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
         <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
         <ul>
           <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
@@ -16,7 +16,7 @@
           <li><a class="upper"  href="{% url 'myitems' %}">My Items</a></li>
           <li><a class="lower"  href="{% url 'market' %}">Flea Market</a></li>
           <li><a class="lower"  href="{% url 'auction' %}">Auction</a></li>
-          <li><a class="lower"  href="{% url 'mypage' %}">My Account</a></li>
+          <li><a class="lowest"  href="{% url 'mypage' %}">My Account</a></li>
           <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
         </ul>
       </nav>
@@ -56,8 +56,7 @@
           </table>
     
         </section>
+  </div>
+</body>
 
-
-    </div>
-  </body>
 </html>
