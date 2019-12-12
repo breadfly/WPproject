@@ -23,6 +23,12 @@ from .models import Product
 	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
 """
 
+class MarketPurchaseForm(forms.Form):
+    pass
+
+class AuctionPurchaseForm(forms.Form):
+    pass
+
 class SellForm(forms.ModelForm):
     error_css_class = 'error'
 
@@ -36,7 +42,6 @@ class SellForm(forms.ModelForm):
         self.fields['category'].required = False
         self.fields['explanation'].required = False
         self.fields['photo'].required = False
-
 
 class RegisterForm(forms.ModelForm):
     error_css_class = 'error'

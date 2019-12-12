@@ -29,28 +29,30 @@
               <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
               <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
             </select>
-          <div>
+          </div>
     
           <table class="goods_table">
             {% for obj in products %}
-              <tr>
-              <td class="goods_img">
-                {% if obj.photo %}
-                <img src="{{obj.photo.url}}">
-                {% endif %}
-              </td>
-              <td class="goods_info">
-                <p class="goods_name"> {{ obj.name }} </p>
-                <div class="inf">
-                    <p class="goods_price"> <strong> PRICE </strong> {{ obj.basic_price }} </p>
-                    <p class="seller_name"> <strong> SELLER </strong> {{ obj.seller.username }} </p>
-                    <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
-                    <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
-                </div>
-                <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
-              </td>
-            </tr>
-            {% endfor %}
+            <a href="{% url 'market_detail' obj.pid %}" >
+              <tr onclick ="location.href='{% url 'market_detail' obj.pid %}'">
+                  <td class="goods_img">
+                    {% if obj.photo %}
+                    <img src="{{obj.photo.url}}">
+                    {% endif %}
+                  </td>
+                  <td class="goods_info">
+                    <p class="goods_name"> {{ obj.name }} </p>
+                    <div class="inf">
+                        <p class="goods_price"> <strong> PRICE </strong> {{ obj.basic_price }} </p>
+                        <p class="seller_name"> <strong> SELLER </strong> {{ obj.seller.username }} </p>
+                        <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
+                        <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
+                    </div>
+                    <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
+                  </td>
+                </tr>
+              </a>
+              {% endfor %}
           </table>
     
         </section>

@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>ShopShop</title>
-    <link rel="stylesheet" href="style_product_list.css">
+    <link rel="stylesheet" href="{% static 'home/style_product_list.css' %}">
   </head>
   <body>
         <header class="main_header">
@@ -63,5 +65,11 @@
     </tr>
     </tbody>
   </table>
+
+  {% for obj in products %}
+  {{ obj.pid.name }}
+  {{ obj.pid.highest_price }}
+    {% endfor %}
+
   </body>
 </html>

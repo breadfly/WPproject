@@ -1,5 +1,15 @@
 <html>
+	<head>
+
+	</head>
 	<body>
-		
+		<p>{{product.name}}</p>
+		<p>{{product.seller.username}}</p>
+		detail page
+		<form action="" method="POST">
+			{% csrf_token %}
+			<button type="submit" name="buy">BUY NOW</button>
+			<button type="submit" name="wish">WISHLIST</button>
+		</form>
 	</body>
 </html>

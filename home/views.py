@@ -11,47 +11,24 @@ def auction_detail(request, pid):
 	return redirect('/')
 
 def market_detail(request, pid):
-	return redirect('/')
-"""
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
-
-	try:
-		product = Product.objects.get(pid=pid)
-	except :
-		raise Http404("Item Does not exist")
-	form = PurchaseForm()
+	form = MarketPurchaseForm()
 	if request.method == 'POST':
-		form = PurchaseForm(request.POST)
-		try:
+		form = MarketPurchaseForm(request.POST)
+		if 'buy' in form.data:
+			product = Product.objects.get(pid=pid)
+			product.buyer = User.objects.get(userid=userid)
+			product.save()
+			return redirect('/myitems')
+		elif 'wish' in form.data:
+			wishlist = Wishlist.objects.create(userid=User.objects.get(userid=userid),
+				pid = Product.objects.get(pid=pid))
+			wishlist.save()
+			return redirect('/wishlist')
+	return render(request, 'home/market_detail.html', {'form':form})
 
-		except:
-	"""
-"""
-	form = AddCartForm()
-	cid = request.session.get('cid', False)
-	if request.method == 'POST':
-		if cid == False :
-			return redirect('/login')
-		else : 
-			form = AddCartForm(request.POST)
-			number = int(form.cleaned_data['number'])
-			try :
-				already = Cart.objects.get(cid_id=cid, isbn_id=isbn)
-				already.num += number
-				already.save()
-			except:
-				cart = Cart(cid_id=cid, isbn_id=isbn, num=number)
-				cart.save()
-			messages.success(request, '책이 카트에 추가되었습니다.')
-	else:
-		form = AddCartForm()
-	login = 'logout'
-	if cid == False: login = 'login'
-	categories = Category.objects.values('name').distinct()
-	return render(request, 'home/detail.html', {'login':login, 'book':book,'form':form,'category':categories})
-"""
 def logout(request):
 	userid = request.session.get('userid', False)
 	if userid != False : # 로그인 되어있으면
@@ -59,9 +36,18 @@ def logout(request):
 	return redirect('/')
 
 def wishlist(request):
-	return redirect('/')
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	wishlist = Wishlist.objects.filter(userid__userid=userid)
+	return render(request, 'home/wishlist.html', {'products':wishlist})
+
 def myitems(request):
-	return redirect('/')
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	myitems = Product.objects.filter(buyer__userid=userid)
+	return render(request, 'home/myitems.html', {'products':myitems})
 
 def auction(request, category=''):
 	userid = request.session.get('userid', False)
