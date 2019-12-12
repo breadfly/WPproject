@@ -23,11 +23,15 @@ from .models import Product
 	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
 """
 
+class SearchForm(forms.Form):
+    search = forms.CharField(required=False,max_length=100, widget=forms.TextInput(attrs={'placeholder':'SEARCH'}))
+
 class MarketPurchaseForm(forms.Form):
     pass
 
 class AuctionPurchaseForm(forms.Form):
-    pass
+    error_css_class = 'error'
+    current_price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Price', 'size':'10'}))
 
 class SellForm(forms.ModelForm):
     error_css_class = 'error'

@@ -7,8 +7,30 @@ from .forms import *
 from .models import *
 from django.db.models import Count
 
+def wishlist(request):
+	return redirect('/wishlist/market')
+
 def auction_detail(request, pid):
-	return redirect('/')
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	form = AuctionPurchaseForm()
+	if request.method == 'POST':
+		form = AuctionPurchaseForm(request.POST)
+		if 'buy' in form.data:
+			product = Product.objects.get(pid=pid)
+			if product.current_price < int(form.data['current_price']):
+				product.current_price = form.data['current_price']
+			candidate = Candidate.objects.create(userid=User.objects.get(userid=userid),
+				pid = product, price=form.data['current_price'])
+			candidate.save()
+			return redirect('/myitems')
+		elif 'wish' in form.data:
+			wishlist = Wishlist.objects.create(userid=User.objects.get(userid=userid),
+				pid = Product.objects.get(pid=pid))
+			wishlist.save()
+			return redirect('/wishlist')
+	return render(request, 'home/auction_detail.html', {'form':form})
 
 def market_detail(request, pid):
 	userid = request.session.get('userid', False)
@@ -29,18 +51,35 @@ def market_detail(request, pid):
 			return redirect('/wishlist')
 	return render(request, 'home/market_detail.html', {'form':form})
 
+def detail(request, pid):
+	try:
+		product = Product.objects.get(pid=pid)
+	except:
+		raise Http404("Product does not exist")
+	if product.selltype == 'F':
+		return market_detail(request, pid)
+	else:
+		return auction_detail(request, pid)
+
 def logout(request):
 	userid = request.session.get('userid', False)
 	if userid != False : # 로그인 되어있으면
 		del request.session['userid']
 	return redirect('/')
 
-def wishlist(request):
+def wishlistMarket(request):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
 	wishlist = Wishlist.objects.filter(userid__userid=userid)
-	return render(request, 'home/wishlist.html', {'products':wishlist})
+	return render(request, 'home/wishlist.html', {'type':'market', 'products':wishlist})
+
+def wishlistAuction(request):
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	wishlist = Candidate.objects.filter(userid__userid=userid)
+	return render(request, 'home/wishlist.html', {'type':'auction', 'products':wishlist})
 
 def myitems(request):
 	userid = request.session.get('userid', False)
@@ -49,17 +88,35 @@ def myitems(request):
 	myitems = Product.objects.filter(buyer__userid=userid)
 	return render(request, 'home/myitems.html', {'products':myitems})
 
-def market(request, category=''):
+def market(request, category='', search=''):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
+	if category=='':
+		return redirect('/market/all/')
+
 	categories = Category.objects.values('name').distinct()
-	products = None
-	if category == '':
-		products = Product.objects.all()
+	if search=='':
+		msg='no search'
+	else:
+		msg = 'yes search is ' + search
+
+	# search
+	if request.method == 'POST':
+		form = SearchForm(request.POST)
+		return redirect('/market/' + str(category) + '/' + str(form.data['search']))
+	form = SearchForm()
+
+	if category == 'all':
+		products = Product.objects.filter(selltype='F',
+			buyer=None, expire__gte=timezone.now(),
+			name__icontains=search)
 	else :
-		products = Product.objects.filter(category__name=category)
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+		products = Product.objects.filter(category__name=category,
+			selltype='F', buyer=None, expire__gte=timezone.now(),
+			name__icontains=search)
+
+	return render(request, 'home/product_market.html', {'products':products, 'form':form, 'categories':categories, 'msg':msg})
 
 def auction(request, category=''):
 	userid = request.session.get('userid', False)
@@ -68,10 +125,10 @@ def auction(request, category=''):
 	categories = Category.objects.values('name').distinct()
 	products = None
 	if category == '':
-		products = Product.objects.all()
+		products = Product.objects.filter(selltype='A', buyer=None, expire__gte=datetime.now())
 	else :
-		products = Product.objects.filter(category__name=category)
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+		products = Product.objects.filter(category__name=category, selltype='A', buyer=None, expire__gte=datetime.now())
+	return render(request, 'home/product_auction.html', {'products':products, 'categories':categories})
 
 def sell(request):
 	userid = request.session.get('userid', False)
@@ -214,7 +271,7 @@ def bookList(request,category=''):
 		else : books = Book.objects.filter(category__name=category)
 		books = books.order_by('-price')
 	return render(request, 'home/books.html', {'login':login,'books':books,'category':categories})
-
+"""
 def detail(request, category, isbn):
 	try:
 		book = Book.objects.get(isbn=isbn,category__name=category)
@@ -242,7 +299,7 @@ def detail(request, category, isbn):
 	if cid == False: login = 'login'
 	categories = Category.objects.values('name').distinct()
 	return render(request, 'home/detail.html', {'login':login, 'book':book,'form':form,'category':categories})
-
+"""
 """def mypage(request):
 
 	cid = request.session.get('cid', False)

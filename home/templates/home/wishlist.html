@@ -14,62 +14,62 @@
     <table class="table-area">
     <thead>
     <tr>
+      {% if type == "market" %}
         <th scope="cols">Product name</th>
         <th scope="cols">Current Price</th>
         <th scope="cols">Wish list Person</th>
         <th scope="cols">Status</th>
         <th scope="cols">History</th>
+      {% else %}
+      <th scope="cols">Product name</th>
+      <th scope="cols">Current Price</th>
+      <th scope="cols">Wish list Person</th>
+      <th scope="cols">Status</th>
+      <th scope="cols">History</th>
+      {% endif %}
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-    </tr>
-    <tr>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-    </tr><tr>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-        <td>--</td>
-    </tr>
-    <tr>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-        <td class="even">--</td>
-    </tr>
+      {% if type == "market" %}
+        {% for obj in products %}
+      <tr>
+        {% if forloop.counter|divisibleby:2 %}
+        <td>  {{ obj.pid.name }}  </td>
+        <td> {{obj.pid.current_price}} </td>
+        <td> {{ obj.pid.seller.userid }} </td>
+        <td> {{ obj.pid.seller.userid }} </td>
+        <td> {{ obj.pid.seller.userid }} </td>
+        {% else %}
+        <td class="even">  {{ obj.pid.name }}  </td>
+        <td class="even"> {{obj.pid.current_price}} </td>
+        <td class="even"> {{ obj.pid.seller.userid }} </td>
+        <td class="even"> {{ obj.pid.seller.userid }} </td>
+        <td  class="even"> {{ obj.pid.seller.userid }} </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+
+      {% else %}
+      {% for obj in products %}
+      <tr>
+        {% if forloop.counter|divisibleby:2 %}
+        <td>  {{ obj.pid.name }}  </td>
+        <td> {{obj.pid.current_price}} </td>
+        <td> {{ obj.pid.seller.userid }} </td>
+        <td> {{ obj.pid.seller.userid }} </td>
+        <td> {{ obj.pid.seller.userid }} </td>
+        {% else %}
+        <td class="even">  {{ obj.pid.name }}  </td>
+        <td class="even"> {{obj.pid.current_price}} </td>
+        <td class="even"> {{ obj.pid.seller.userid }} </td>
+        <td class="even"> {{ obj.pid.seller.userid }} </td>
+        <td  class="even"> {{ obj.pid.seller.userid }} </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      {% endif %}
     </tbody>
   </table>
-
-  {% for obj in products %}
-  {{ obj.pid.name }}
-  {{ obj.pid.highest_price }}
-    {% endfor %}
 
   </body>
 </html>
