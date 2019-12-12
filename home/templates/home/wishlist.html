@@ -14,12 +14,13 @@
     <table class="table-area">
     <thead>
     <tr>
-      {% if type == "market" %}
+      {% if type == "wishlist" %}
+        <th scope="cols">Type</th>
         <th scope="cols">Product name</th>
         <th scope="cols">Current Price</th>
-        <th scope="cols">Wish list Person</th>
-        <th scope="cols">Status</th>
-        <th scope="cols">History</th>
+        <th scope="cols">Seller</th>
+        <th scope="cols">Phone</th>
+        <th scope="cols">Trading Place</th>
       {% else %}
       <th scope="cols">Product name</th>
       <th scope="cols">Current Price</th>
@@ -30,21 +31,29 @@
     </tr>
     </thead>
     <tbody>
-      {% if type == "market" %}
-        {% for obj in products %}
-      <tr>
+      {% if type == "wishlist" %}
+        {% for obj in wishlist %}
+      <tr onclick="window.open('{% url 'detail' obj.pid.pid %}')">
         {% if forloop.counter|divisibleby:2 %}
-        <td>  {{ obj.pid.name }}  </td>
+        <td>
+          {% if obj.pid.selltype == "A" %} Auction
+          {% else %} Flea Market {% endif %}
+        </td>
+        <td> {{ obj.pid.name }} </td>
         <td> {{obj.pid.current_price}} </td>
-        <td> {{ obj.pid.seller.userid }} </td>
-        <td> {{ obj.pid.seller.userid }} </td>
-        <td> {{ obj.pid.seller.userid }} </td>
+        <td> {{ obj.pid.seller.username }} </td>
+        <td> {{ obj.pid.seller.phone }} </td>
+        <td> {{ obj.pid.place }} </td>
         {% else %}
-        <td class="even">  {{ obj.pid.name }}  </td>
-        <td class="even"> {{obj.pid.current_price}} </td>
-        <td class="even"> {{ obj.pid.seller.userid }} </td>
-        <td class="even"> {{ obj.pid.seller.userid }} </td>
-        <td  class="even"> {{ obj.pid.seller.userid }} </td>
+        <td class=even>
+            {% if obj.pid.selltype == "A" %} Auction
+            {% else %} Flea Market {% endif %}  
+        </td>
+        <td class=even> {{ obj.pid.name }} </td>
+        <td class=even> {{obj.pid.current_price}} </td>
+        <td class=even> {{ obj.pid.seller.username }} </td>
+        <td class=even> {{ obj.pid.seller.phone }} </td>
+        <td class=even> {{ obj.pid.place }} </td>
         {% endif %}
       </tr>
       {% endfor %}

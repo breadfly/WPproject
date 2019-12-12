@@ -23,8 +23,6 @@ urlpatterns = [
     path('myitems/', views.myitems, name='myitems'),
 
     path('wishlist/', views.wishlist, name='wishlist'),
-    path('wishlist/market/', views.wishlistMarket, name='wishlistMarket'),
-    path('wishlist/auction/', views.wishlistAuction, name='wishlistAuction'),
 
     # past
     path('cart/', views.cart, name='cart'),
