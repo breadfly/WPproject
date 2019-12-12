@@ -14,11 +14,9 @@ urlpatterns = [
  
     path('market/', views.market, name='market'),
     path('market/<category>/', views.market, name='marketcategory'),
-    path('market/<category>/<search>/', views.market, name='marketsearch'),
  
     path('auction/', views.auction, name='auction'),
     path('auction/<category>/', views.auction, name='auctioncategory'),
-    path('auction/<category>/<search>/', views.auction, name='auctionsearch'),
     path('detail/<pid>/', views.detail, name='detail'),
 
     path('sell/', views.sell, name='sell'),

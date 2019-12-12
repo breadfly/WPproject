@@ -23,11 +23,6 @@ from .models import Product
 	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
 """
 
-class SearchForm(forms.Form):
-    seller = forms.CharField(required=False,max_length=300, widget=forms.TextInput(attrs={'placeholder':'SELLER'}))
-    name = forms.CharField(required=False,max_length=300, widget=forms.TextInput(attrs={'placeholder':'NAME'}))
-    lower = forms.IntegerField(required=False,max_length=100, widget=forms.NumberInput(attrs={'placeholder':'LOWER PRICE'}))
-    higher = forms.IntegerField(required=False,max_length=100, widget=forms.NumberInput(attrs={'placeholder':'HIGHER PRICE'}))
 
 class MarketPurchaseForm(forms.Form):
     pass

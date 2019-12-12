@@ -88,7 +88,7 @@ def myitems(request):
 	myitems = Product.objects.filter(buyer__userid=userid)
 	return render(request, 'home/myitems.html', {'products':myitems})
 
-def market(request, category='', search=''):
+def market(request, category=''):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
@@ -98,23 +98,34 @@ def market(request, category='', search=''):
 	categories = Category.objects.values('name').distinct()
 
 	# search
-	if request.method == 'POST':
-		form = SearchForm(request.POST)
-		search = str(form.data['seller'])
-		form.data['seller']
-		return redirect('/market/' + str(category) + '/' + str(form.data['search']))
-	form = SearchForm()
+	if request.method == 'GET':
+		seller = str(request.GET.get('seller', ''))
+		name = str(request.GET.get('name', ''))
+		lower = int(request.GET.get('lower', '0'))
+		higher = int(request.GET.get('higher', '0'))
+		if category == 'all':
+			products = Product.objects.filter(selltype='F',
+				buyer=None, expire__gte=timezone.now(),
+				name__icontains=name,
+				seller__username__icontains=seller,
+				current_price__gte=lower,
+				current_price__lte=higher)
+		else :
+			products = Product.objects.filter(category__name=category,
+				selltype='F', buyer=None, expire__gte=timezone.now(),
+				name__icontains=name,
+				seller__username__icontains=seller,
+				current_price__gte=lower,
+				current_price__lte=higher)
+	else:
+		if category == 'all':
+			products = Product.objects.filter(selltype='F',
+				buyer=None, expire__gte=timezone.now())
+		else :
+			products = Product.objects.filter(category__name=category,
+				selltype='F', buyer=None, expire__gte=timezone.now())
 
-	if category == 'all':
-		products = Product.objects.filter(selltype='F',
-			buyer=None, expire__gte=timezone.now(),
-			name__icontains=search)
-	else :
-		products = Product.objects.filter(category__name=category,
-			selltype='F', buyer=None, expire__gte=timezone.now(),
-			name__icontains=search)
-
-	return render(request, 'home/product_market.html', {'products':products, 'form':form, 'categories':categories})
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
 
 def auction(request, category='', search=''):
 	userid = request.session.get('userid', False)
