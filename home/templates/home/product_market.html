@@ -12,12 +12,11 @@
         <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
         <ul>
           <li>
-            <form method="POST">
-                {{ form.seller }}
-                {{ form.name }}
-                {{form.lower}}
-                {{form.higher}}
-              {% csrf_token %}
+            <form method="GET" action="">
+              <input type="text" name="seller">
+              <input type="text" name="name">
+              <input type="number" name="lower">
+              <input type="number" name="higher">
               <button type="submit" class="btn">SEARCH</button>
             </form>
           </li>

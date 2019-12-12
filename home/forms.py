@@ -24,7 +24,10 @@ from .models import Product
 """
 
 class SearchForm(forms.Form):
-    search = forms.CharField(required=False,max_length=100, widget=forms.TextInput(attrs={'placeholder':'SEARCH'}))
+    seller = forms.CharField(required=False,max_length=300, widget=forms.TextInput(attrs={'placeholder':'SELLER'}))
+    name = forms.CharField(required=False,max_length=300, widget=forms.TextInput(attrs={'placeholder':'NAME'}))
+    lower = forms.IntegerField(required=False,max_length=100, widget=forms.NumberInput(attrs={'placeholder':'LOWER PRICE'}))
+    higher = forms.IntegerField(required=False,max_length=100, widget=forms.NumberInput(attrs={'placeholder':'HIGHER PRICE'}))
 
 class MarketPurchaseForm(forms.Form):
     pass

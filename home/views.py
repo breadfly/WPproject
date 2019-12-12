@@ -100,6 +100,8 @@ def market(request, category='', search=''):
 	# search
 	if request.method == 'POST':
 		form = SearchForm(request.POST)
+		search = str(form.data['seller'])
+		form.data['seller']
 		return redirect('/market/' + str(category) + '/' + str(form.data['search']))
 	form = SearchForm()
 
