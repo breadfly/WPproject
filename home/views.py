@@ -271,7 +271,7 @@ def bookList(request,category=''):
 		else : books = Book.objects.filter(category__name=category)
 		books = books.order_by('-price')
 	return render(request, 'home/books.html', {'login':login,'books':books,'category':categories})
-
+"""
 def detail(request, category, isbn):
 	try:
 		book = Book.objects.get(isbn=isbn,category__name=category)
@@ -299,7 +299,7 @@ def detail(request, category, isbn):
 	if cid == False: login = 'login'
 	categories = Category.objects.values('name').distinct()
 	return render(request, 'home/detail.html', {'login':login, 'book':book,'form':form,'category':categories})
-
+"""
 """def mypage(request):
 
 	cid = request.session.get('cid', False)
