@@ -9,17 +9,25 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
-    path('market/', views.market, name='market'),
-    path('auction/', views.auction, name='auction'),
-    path('sell/', views.sell, name='sell'),
     path('logout/', views.logout, name="logout"),
     path('mypage/', views.mypage, name="mypage"),
-    path('wishlist/', views.wishlist, name='wishlist'),
+ 
+    path('market/', views.market, name='market'),
+    path('market/<category>/', views.market, name='marketcategory'),
+    path('market/<category>/<search>/', views.market, name='marketsearch'),
+ 
+    path('auction/', views.auction, name='auction'),
+    path('auction/<category>/', views.auction, name='auctioncategory'),
+    path('auction/<category>/<search>/', views.auction, name='auctionsearch'),
+    path('detail/<pid>/', views.detail, name='detail'),
+
+    path('sell/', views.sell, name='sell'),
     path('myitems/', views.myitems, name='myitems'),
-    path('auction/<pid>/', views.auction_detail, name='auction_detail'),
-    path('market/<pid>/', views.market_detail, name='market_detail'),
+
+    path('wishlist/', views.wishlist, name='wishlist'),
     path('wishlist/market/', views.wishlistMarket, name='wishlistMarket'),
     path('wishlist/auction/', views.wishlistAuction, name='wishlistAuction'),
+
     # past
     path('cart/', views.cart, name='cart'),
     path('books/', views.bookList, name='allBooks'),

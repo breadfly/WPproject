@@ -51,6 +51,16 @@ def market_detail(request, pid):
 			return redirect('/wishlist')
 	return render(request, 'home/market_detail.html', {'form':form})
 
+def detail(request, pid):
+	try:
+		product = Product.objects.get(pid=pid)
+	except:
+		raise Http404("Product does not exist")
+	if product.selltype == 'F':
+		return market_detail(request, pid)
+	else:
+		return auction_detail(request, pid)
+
 def logout(request):
 	userid = request.session.get('userid', False)
 	if userid != False : # 로그인 되어있으면
@@ -78,17 +88,35 @@ def myitems(request):
 	myitems = Product.objects.filter(buyer__userid=userid)
 	return render(request, 'home/myitems.html', {'products':myitems})
 
-def market(request, category=''):
+def market(request, category='', search=''):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
+	if category=='':
+		return redirect('/market/all/')
+
 	categories = Category.objects.values('name').distinct()
-	products = None
-	if category == '':
-		products = Product.objects.filter(selltype='F', buyer=None, expire__gte=datetime.now())
+	if search=='':
+		msg='no search'
+	else:
+		msg = 'yes search is ' + search
+
+	# search
+	if request.method == 'POST':
+		form = SearchForm(request.POST)
+		return redirect('/market/' + str(category) + '/' + str(form.data['search']))
+	form = SearchForm()
+
+	if category == 'all':
+		products = Product.objects.filter(selltype='F',
+			buyer=None, expire__gte=timezone.now(),
+			name__icontains=search)
 	else :
-		products = Product.objects.filter(category__name=category, selltype='F', buyer=None, expire__gte=datetime.now())
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories})
+		products = Product.objects.filter(category__name=category,
+			selltype='F', buyer=None, expire__gte=timezone.now(),
+			name__icontains=search)
+
+	return render(request, 'home/product_market.html', {'products':products, 'form':form, 'categories':categories, 'msg':msg})
 
 def auction(request, category=''):
 	userid = request.session.get('userid', False)

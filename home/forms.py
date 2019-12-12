@@ -23,6 +23,9 @@ from .models import Product
 	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
 """
 
+class SearchForm(forms.Form):
+    search = forms.CharField(required=False,max_length=100, widget=forms.TextInput(attrs={'placeholder':'SEARCH'}))
+
 class MarketPurchaseForm(forms.Form):
     pass
 
