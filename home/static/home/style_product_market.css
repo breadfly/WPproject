@@ -1,6 +1,4 @@
-/* Edit here */
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
-
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding|Roboto&display=swap&subset=korean');
 
 .cate{
   padding-left: 30%;
@@ -47,6 +45,62 @@ padding: 10px 20px 40px 30px;
 -webkit-text-fill-color:transparent;
 -webkit-text-stroke-width:3px;
 }
+.search-content{
+  visibility: hidden;
+  /* position: absolute; */
+  width: 150px;
+  padding: 10px;
+  z-index: 1;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(252, 237, 243, 0.8);
+  max-width: auto;
+  text-align: center;
+}
+
+.search-content input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #FFFFFF;
+  width: 80%;
+  border-radius: 5px;
+  border: 0;
+  margin: 3px 3px 3px 3px;
+  padding: 3px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+.search-content button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: rgb(245, 75, 148);
+  width: 60%;
+  border: 0;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px;
+  color: #FFFFFF;
+  font-size: 12px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.search-content button:hover,.form button:active,.form button:focus {
+  background: rgb(230, 7, 130);
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #0083B0;
+  text-decoration: none;
+}
+
 .left-nav {
   width: auto;
   align-content: center;
@@ -72,17 +126,31 @@ padding: 10px 20px 40px 30px;
   font-weight: bold;
 }
 
+.left-nav li a.upper_search {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgb(245, 75, 148);
+}
+
+.left-nav li a.upper_search:hover {
+  color: rgb(245, 75, 148);
+  background: white;
+  opacity: 0.8;
+}
 .left-nav li a.upper {
   color: #ffffff;
   text-decoration: none;
   display: block;
   padding: 10px;
   border-radius: 25px;
-  background-color: #E684AE;
+  background-color: rgb(255, 190, 68);
 }
 
 .left-nav li a.upper:hover {
-  color: #E684AE;
+  color: rgb(255, 190, 68);
   background: white;
   opacity: 0.8;
 }

@@ -34,7 +34,7 @@
             <td>{{ product.pid.expire }}</td>
             <td>{{product.userid.username}}</td>
             <td>{{ product.pid.place}}</td>
-            <td>{% if product.pid.expire <  %} Auction
+            <td>{% if product.pid.expire %} Auction
                 {% else %} Flea Market {% endif %}</td>
             <td><button type="button" onclick="window.open('{% url 'detail' product.pid.pid %}')">Detail</button>
                 <button type="button" onclick="window.open('{% url 'detail' product.pid.pid %}')">Modify</button></td>

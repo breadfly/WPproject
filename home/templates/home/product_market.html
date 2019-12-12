@@ -1,77 +1,86 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'home/style_product_market.css' %}">
-    <title>ShopShop</title>
-  </head>
-  <body>
-    {% if pagetype == "market" %}
-    마켓인 경우
-    market page라는 표시??로고?? 좀 있으면 좋겠음(둘이 디자인이 같아서) 귀찮으면 걍 이 if절 삭제 ㄱㄱ
-    {% else %}
-    옥션인 경우
-    {% endif %}
-    <div class="product-page">
-    <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:30%">
-        <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
-        <ul>
-          <li>
-            <form method="GET" action="">
-              <input type="text" name="seller" placeholder="seller">
-              <input type="text" name="name" placeholder="name">
-              <input type="number" name="lower" placeholder="lower price">
-              <input type="number" name="higher" placeholder="higher price">
-              <button type="submit" class="btn">SEARCH</button>
-            </form>
-          </li>
-          <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
-          <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
-          <li><a class="upper" href="{% url 'myitems' %}">My Items</a></li>
-          <li><a class="lower" href="{% url 'market' %}">Flea Market</a></li>
-          <li><a class="lower" href="{% url 'auction' %}">Auction</a></li>
-          <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
-          <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
-        </ul>
-      </nav>
-      <section>
-          {% include 'home/productsCategory.html' %}  
-        <hr>
-          <div class="selectbox">
-            <select id="sort-select" onchange="location=this.value;"style="width:200px;height:50px;font-weight:bold;">
-              <option class="sort-nothing" value="/">-----------</option>
-              <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
-              <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
-            </select>
+
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('.left-nav li a.upper_search').mouseenter(function () {
+        $('.search-content').css('visibility', 'visible');
+        $(this).css('color', 'rgb(245, 75, 148)');
+        $(this).css('background', 'white');
+        $(this).css('opacity', '0.8');
+      });
+            
+    });
+  </script>
+  <link rel="stylesheet" href="{% static 'home/style_product_market.css' %}">
+  <title>ShopShop</title>
+</head>
+
+<body>
+  {% include 'home/productsCategory.html' %}
+  {% if pagetype == "market" %}
+  마켓인 경우
+  market page라는 표시??로고?? 좀 있으면 좋겠음(둘이 디자인이 같아서) 귀찮으면 걍 이 if절 삭제 ㄱㄱ
+  {% else %}
+  옥션인 경우
+  {% endif %}
+  <div class="product-page">
+    <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:15%">
+      <ul>
+        <li class="search-content" style="position: relative;">
+          <form method="GET" action="">
+            <input type="text" name="seller" placeholder="Seller">
+            <input type="text" name="name" placeholder="Name">
+            <input type="number" name="lower" placeholder="Lowest Price">
+            <input type="number" name="higher" placeholder="Highest Price">
+            <button type="submit" class="btn">SEARCH</button>
+          </form>
+        </li>
+        <li><a class="upper_search" href="">Search</a></li>
+        <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
+        <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
+        <li><a class="upper" href="{% url 'myitems' %}">My Items</a></li>
+        <li><a class="lower" href="{% url 'market' %}">Flea Market</a></li>
+        <li><a class="lower" href="{% url 'auction' %}">Auction</a></li>
+        <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
+        <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    <div class="selectbox">
+      <select id="sort-select" onchange="location=this.value;" style="width:200px;height:50px;font-weight:bold;">
+        <option class="sort-nothing" value="/">-----------</option>
+        <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
+        <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
+      </select>
+    </div>
+
+    <table class="goods_table">
+      {% for obj in products %}
+      <tr>
+        <td class="goods_img">
+          {% if obj.photo %}
+          <img src="{{obj.photo.url}}" style="height: 300px; width: auto; padding: 10px">
+          {% endif %}
+        </td>
+        <td class="goods_info">
+          <p class="goods_name"> {{ obj.name }} </p>
+          <div class="inf">
+            <p class="goods_price"> <strong> Price </strong> {{ obj.basic_price }} </p>
+            <p class="seller_name"> <strong> Seller </strong> {{ obj.seller.username }} </p>
+            <p class="phone_number"> <strong> Phone Number </strong> {{ obj.seller.phone}} </p>
+            <p class="trading_place"> <strong> Trading Place </strong> {{ obj.place }} </p>
           </div>
-    
-          <table class="goods_table">
-            {% for obj in products %}
-              <tr>
-                  <td class="goods_img">
-                    {% if obj.photo %}
-                    <img src="{{obj.photo.url}}">
-                    {% endif %}
-                  </td>
-                  <td class="goods_info">
-                    <p class="goods_name"> {{ obj.name }} </p>
-                    <div class="inf">
-                        <p class="goods_price"> <strong> PRICE </strong> {{ obj.basic_price }} </p>
-                        <p class="seller_name"> <strong> SELLER </strong> {{ obj.seller.username }} </p>
-                        <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
-                        <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
-                    </div>
-                    <button type="button" class="market_btn"
-                    onclick="window.open('{% url 'detail' obj.pid %}')">New Page</button>
-                    <button type="button" class="market_btn"
-                    onclick="location.href='{% url 'detail' obj.pid %}'">Current Page</button>
-                  </td>
-                </tr>
-              {% endfor %}
-          </table>
-    
-        </section>
+          <button type="button" class="market_btn" onclick="window.open('{% url 'detail' obj.pid %}')">New Page</button>
+          <button type="button" class="market_btn" onclick="location.href='{% url 'detail' obj.pid %}'">Current
+            Page</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
 </body>
 
