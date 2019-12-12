@@ -13,7 +13,6 @@
         <ul>
           <li>
             <form method="POST">
-              {{ msg }}
               {{ form.search }}
               {% csrf_token %}
               <button type="submit" class="btn">SEARCH</button>
@@ -41,7 +40,7 @@
     
           <table class="goods_table">
             {% for obj in products %}
-              <tr onclick ="location.href='{% url 'detail' obj.pid %}'">
+              <tr>
                   <td class="goods_img">
                     {% if obj.photo %}
                     <img src="{{obj.photo.url}}">
@@ -55,7 +54,10 @@
                         <p class="phone_number"> <strong> PHONE NUMBER </strong> {{ obj.seller.phone}} </p>
                         <p class="trading_place"> <strong> TRADING PLACE </strong> {{ obj.place }} </p>
                     </div>
-                    <button type="button" class="market_btn">Put wish list</button><button type="button" class="market_btn">Buy</button>
+                    <button type="button" class="market_btn"
+                    onclick="window.open('{% url 'detail' obj.pid %}')">New Page</button>
+                    <button type="button" class="market_btn"
+                    onclick="location.href='{% url 'detail' obj.pid %}'">Current Page</button>
                   </td>
                 </tr>
               {% endfor %}
