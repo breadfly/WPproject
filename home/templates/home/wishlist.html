@@ -2,27 +2,37 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>ShopShop</title>
-    <link rel="stylesheet" href="{% static 'home/style_product_list.css' %}">
-  </head>
-  <body>
-    {% if request.get_full_path == "/wishlist/?page=buy" %}
-      <label><input type="radio" name="chk" value="?page=wish" onchange="location = this.value;">WISHLIST</label>
-      <label><input type="radio" name="chk" value="?page=buy" checked="checked" onchange="location = this.value;">BUY</label>
-    {% else %}
-    <label><input type="radio" name="chk" value="?page=wish" checked="checked" onchange="location = this.value;">WISHLIST</label>
-    <label><input type="radio" name="chk" value="?page=buy" onchange="location = this.value;">BUY</label>
-    {%  endif %}
 
+<head>
+  <meta charset="utf-8">
+  <title>ShopShop</title>
+  <link rel="stylesheet" href="{% static 'home/style_product_list.css' %}">
+</head>
 
-    <header class="main_header">
-          <h1>ShopShop</h1>
-        </header>
-    <table class="table-area">
+<body>
+  <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}"
+      style="height:100px; padding: 10px; margin-left: auto; margin-right: auto; margin-bottom: 30px;"
+      alt="LOGO_IMG"></a>
+
+  {% if request.get_full_path == "/wishlist/?page=buy" %}
+  <div class="chk-area">
+    <label><input type="radio" class="option-input radio" name="chk" value="?page=wish"
+        onchange="location = this.value;">WishList</label>
+    <label><input type="radio" class="option-input radio" name="chk" value="?page=buy" checked="checked"
+        onchange="location = this.value;">Buy</label>
+  </div>
+  {% else %}
+  <div class="chk-area">
+    <label><input type="radio" class="option-input radio" name="chk" value="?page=wish" checked="checked"
+        onchange="location = this.value;">WishList</label>
+    <label><input type="radio" class="option-input radio" Sname="chk" value="?page=buy"
+        onchange="location = this.value;">Buy</label>
+  </div>
+  {%  endif %}
+
+  <table class="table-area">
     <thead>
-    <tr>
+      <tr>
         <th scope="cols">Type</th>
         <th scope="cols">Product name</th>
         {% if request.get_full_path == "/wishlist/?page=buy" %}
@@ -32,10 +42,10 @@
         <th scope="cols">Seller</th>
         <th scope="cols">Phone</th>
         <th scope="cols">Trading Place</th>
-    </tr>
+      </tr>
     </thead>
     <tbody>
-        {% for obj in wishlist %}
+      {% for obj in wishlist %}
       <tr onclick="window.open('{% url 'detail' obj.pid.pid %}')">
         {% if forloop.counter|divisibleby:2 %}
         <td>
@@ -52,8 +62,8 @@
         <td> {{ obj.pid.place }} </td>
         {% else %}
         <td class=even>
-            {% if obj.pid.selltype == "A" %} Auction
-            {% else %} Flea Market {% endif %}  
+          {% if obj.pid.selltype == "A" %} Auction
+          {% else %} Flea Market {% endif %}
         </td>
         <td class=even> {{ obj.pid.name }} </td>
         {% if request.get_full_path == "/wishlist/?page=buy" %}
@@ -70,5 +80,6 @@
     </tbody>
   </table>
 
-  </body>
+</body>
+
 </html>

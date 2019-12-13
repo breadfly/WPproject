@@ -1,11 +1,7 @@
-:root{
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
-}
 body{
-  font-family: "Roboto", sans-serif;
-  background: #77A1D3;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #FC466B;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
