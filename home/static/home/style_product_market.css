@@ -1,6 +1,4 @@
-/* Edit here */
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
-
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding|Roboto&display=swap&subset=korean');
 
 .cate{
   padding-left: 30%;
@@ -22,18 +20,17 @@
   text-shadow: none;
 }
 .cate a:hover{
-  color: #fff;
-  opacity: 0.8;
+  color: rgb(185, 69, 231);
 }
 .category{
   margin-top: 40px;
 }
 /* Edit here */
 
-body{
-  background: #77A1D3;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.product-page{
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, white, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, white, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
 
@@ -47,6 +44,62 @@ padding: 10px 20px 40px 30px;
 -webkit-text-fill-color:transparent;
 -webkit-text-stroke-width:3px;
 }
+.search-content{
+  visibility: hidden;
+  /* position: absolute; */
+  width: 150px;
+  padding: 10px;
+  z-index: 1;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(252, 237, 243, 0.8);
+  max-width: auto;
+  text-align: center;
+}
+
+.search-content input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #FFFFFF;
+  width: 80%;
+  border-radius: 5px;
+  border: 0;
+  margin: 3px 3px 3px 3px;
+  padding: 3px;
+  box-sizing: border-box;
+  font-size: 12px;
+}
+.search-content button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: rgb(245, 75, 148);
+  width: 60%;
+  border: 0;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 3px;
+  color: #FFFFFF;
+  font-size: 12px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.search-content button:hover,.form button:active,.form button:focus {
+  background: rgb(230, 7, 130);
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #0083B0;
+  text-decoration: none;
+}
+
 .left-nav {
   width: auto;
   align-content: center;
@@ -72,17 +125,31 @@ padding: 10px 20px 40px 30px;
   font-weight: bold;
 }
 
+.left-nav li a.upper_search {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgb(245, 75, 148);
+}
+
+.left-nav li a.upper_search:hover {
+  color: rgb(245, 75, 148);
+  background: white;
+  opacity: 0.8;
+}
 .left-nav li a.upper {
   color: #ffffff;
   text-decoration: none;
   display: block;
   padding: 10px;
   border-radius: 25px;
-  background-color: #E684AE;
+  background-color: rgb(255, 190, 68);
 }
 
 .left-nav li a.upper:hover {
-  color: #E684AE;
+  color: rgb(255, 190, 68);
   background: white;
   opacity: 0.8;
 }
@@ -118,18 +185,53 @@ padding: 10px 20px 40px 30px;
   opacity: 0.8;
 }
 
-.selectbox{
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 40%;
+.select-script{
+  position:relative;
+  left: 110%;
+  margin: 10px;
+  width:170px; 
+  height:30px; 
+  line-height:30px; 
+  border:1px solid #606976; 
+  border-radius:4px; text-transform:uppercase; 
+  background:#fff;
 }
+.select-script label{
+  position:absolute; 
+  width:90%; 
+  font-size:.86em; 
+  color:#606976; 
+  top:0; left:0; 
+  padding:0 5%;
+}
+.select-script label:after{
+  content:'▼'; 
+  width:40px; 
+  height:30px; 
+  position:absolute; 
+  top:0; right:0; 
+  font-size:.76em; 
+  color:#fff; 
+  text-align:center; 
+  background:#606976;}
+.select-script select{
+  width:100%; 
+  height:30px; 
+  opacity:0; 
+  filter:alpha(opacity=0); 
+  -ms-filter:alpha(opacity=0)/* IE 8 */;
+}
+
 table{
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
   min-width: 450px;
   max-width: 60%;
   height: auto;
   background-color: rgba(255, 255, 255, 0.2);
+  border: 0;
+  border-radius: 40px;
   color: #575453;
 }
 td{
@@ -165,6 +267,20 @@ td{
 }
 .market_btn:hover{
   background: #0083B0;
+}
+footer{
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif; 
+  color: white;
+  font-size: 13px;
+  padding: 10px;
+  text-align: left;
+}
+footer a{
+  text-decoration: none;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif; 
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
 @media (max-width: 1070px) {
   table{

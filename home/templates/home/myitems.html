@@ -37,7 +37,7 @@
                 {% elif product.expired|utc < now|utc %} Expired 
                 {% else %} On Sale {% endif %}</td>
             <td>
-                {% if product.selltype == "A" %}  {{ productinfo|get_item_string:product.pid }}
+                {% if product.selltype == "A" %} 
                 {% else %} {{ productinfo|get_item:product.pid }} {% endif %}
               
             </td>
