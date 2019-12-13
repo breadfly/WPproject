@@ -11,7 +11,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('logout/', views.logout, name="logout"),
     path('mypage/', views.mypage, name="mypage"),
- 
     path('market/', views.market, name='market'),
     path('market/<category>/', views.market, name='marketcategory'),
  
@@ -20,9 +19,12 @@ urlpatterns = [
     path('detail/<pid>/', views.detail, name='detail'),
 
     path('sell/', views.sell, name='sell'),
+    path('sell/<pid>/', views.editProduct, name='editProduct'),
     path('wishlist/', views.wishlist, name='wishlist'),
     path('myitems/', views.myitems, name='myitems'),
 
-
+    path('adminpage/', views.adminpage, name='adminpage'),
+    path('userpage/<str:uid>', views.userpage, name='userpage'),
+    path('categoryadd/', views.categoryadd, name='categoryadd'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -20,13 +20,14 @@
             <th scope="cols">Current Price</th>
             <th scope="cols">Expiration</th>
             <th scope="cols">Status</th>
-            <th scope="cols">Bidders/Wishlists</th>
-            <th scope="cols">Trading Place</th>
+            <th scope="cols">Wishlist Person</th>
+            <th scope="cols">History</th>
             <th scope="cols">Options</th>
           </tr>
         </thead>
         <tbody>
         {% for product in products %}
+        {% if forloop.counter|divisibleby:2 %}
           <tr>
             <td>{% if product.selltype == "A" %} Auction
                 {% else %} Flea Market {% endif %}</td>
@@ -36,65 +37,42 @@
             <td>{% if product.buyer %} Sold Out
                 {% elif product.expired|utc < now|utc %} Expired 
                 {% else %} On Sale {% endif %}</td>
+            <td> {{ wishnum|get_item:product.pid }} </td>
             <td>
                 {% if product.selltype == "A" %} 
-                {% else %} {{ productinfo|get_item:product.pid }} {% endif %}
-              
+                {% for item in  history|get_item:product.pid %}
+                {% if forloop.counter|divisibleby:2 %} {{ item }}
+                {% else %} {{ item }} : {% endif %}
+                {% endfor %}
+                {% endif %}
             </td>
-            <td>{{ product.place}}</td>
             <td><button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Detail</button>
-                <button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Modify</button></td>
+              <button type="button" onclick="window.open('{% url 'editProduct' product.pid %}')">Modify</button></td>
+            </tr>
+          {% else %}
+          <tr>
+            <td class="even">{% if product.selltype == "A" %} Auction
+                {% else %} Flea Market {% endif %}</td>
+            <td class="even">{{ product.name }}</td>
+            <td class="even">{{ product.current_price }}</td>
+            <td class="even">{{ product.expire }}</td>
+            <td class="even">{% if product.buyer %} Sold Out
+                {% elif product.expired|utc < now|utc %} Expired 
+                {% else %} On Sale {% endif %}</td>
+            <td class="even"> {{ wishnum|get_item:product.pid }} </td>
+            <td class="even">
+                {% if product.selltype == "A" %} 
+                {% for item in  history|get_item:product.pid %}
+                {% if forloop.counter|divisibleby:2 %} {{ item }}
+                {% else %} {{ item }} : {% endif %}
+                {% endfor %}
+                {% endif %}
+            </td>
+            <td class="even"><button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Detail</button>
+                <button type="button" onclick="window.open('{% url 'editProduct' product.pid %}')">Modify</button></td>
           </tr>
+          {% endif %}
           {% endfor %}
-          <tr>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-          </tr>
-
-          <tr>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-          </tr>
-          <tr>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-          </tr>
-          <tr>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-          </tr>
-          <tr>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-            <td class="even">--</td>
-          </tr>
-          <tr>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-            <td>--</td>
-          </tr>
         </tbody>
       </table>
   </body>

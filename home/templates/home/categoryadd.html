@@ -1,0 +1,12 @@
+<html>
+	<head>
+	</head>
+	<body>
+		MAKE CATEGORY
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{ form.name }}
+			<button type="submit" name="make">MAKE CATEGORY</button>
+		</form>
+	</body>
+</html>

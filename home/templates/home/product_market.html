@@ -59,7 +59,8 @@
             <select id="selectbox" onchange="location=this.value;" title="선택 구분">
               <option selected="selected">-------</option>
               <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
-              <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
+              <option class="sort-higher-price" value="?sort=lower-expire">기한적은순</option>
+              <option class="sort-higher-price" value="?sort=higher-expire">기한많은순</option>
             </select>
           </div>
         </td>
@@ -69,6 +70,8 @@
         <td class="goods_img">
           {% if obj.photo %}
           <img src="{{obj.photo.url}}" style="height: 300px; width: auto; padding: 10px">
+          {% else %}
+          <img src="{% static 'home/basic.png' %}"
           {% endif %}
         </td>
         <td class="goods_info">

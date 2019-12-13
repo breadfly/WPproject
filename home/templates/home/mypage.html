@@ -9,6 +9,7 @@
   </head>
   <body>
 		<div >
+			userid : {{ userid }}
 				<div class="form">
 					<form method="POST">
 					{% csrf_token %}
@@ -21,7 +22,8 @@
 					{% endif %}
 					{% endfor %}
 	
-					<button type="submit">MODIFY</button>
+					<button type="submit" name="modify">MODIFY</button>
+					<button type="submit" name="delete">DELETE</button>
 				</form>
 			  </div>
 	  </div>
