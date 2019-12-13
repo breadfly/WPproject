@@ -6,14 +6,20 @@
   <meta charset="utf-8">
   <script type="text/javascript" src="http://code.jquery.com/jquery-3.2.0.min.js"></script>
   <script type="text/javascript">
-    $(function () {
-      $('.left-nav li a.upper_search').mouseenter(function () {
-        $('.search-content').css('visibility', 'visible');
-        $(this).css('color', 'rgb(245, 75, 148)');
-        $(this).css('background', 'white');
-        $(this).css('opacity', '0.8');
+    $(document).ready(function () {
+      $(function () {
+        $('.left-nav li a.upper_search').mouseenter(function () {
+          $('.search-content').css('visibility', 'visible');
+          $(this).css('color', 'rgb(245, 75, 148)');
+          $(this).css('background', 'white');
+          $(this).css('opacity', '0.8');
+        });
+        var select = $('.select-script select');
+        select.change(function () {
+          var select_name = $(this).children('option:selected').text();
+          $(this).siblings("label").text(select_name);
+        });
       });
-            
     });
   </script>
   <link rel="stylesheet" href="{% static 'home/style_product_market.css' %}">
@@ -50,13 +56,15 @@
         <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
       </ul>
     </nav>
-    <div class="selectbox">
-      <select id="sort-select" onchange="location=this.value;" style="width:200px;height:50px;font-weight:bold;">
-        <option class="sort-nothing" value="/">-----------</option>
+    <div class="select-box select-script">
+      <label for="selectbox">-------</label>
+      <select id="selectbox" onchange="location=this.value;" title="선택 구분">
+        <option selected="selected">-------</option>
         <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
         <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
       </select>
     </div>
+
 
     <table class="goods_table">
       {% for obj in products %}
