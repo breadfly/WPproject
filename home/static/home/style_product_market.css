@@ -19,9 +19,18 @@
   color: #333;
   text-shadow: none;
 }
-.cate a:hover{
-  color: rgb(185, 69, 231);
+.category a:hover {
+  color:#616f94;
 }
+.category a:after {
+  display:block;
+  content: '';
+  border-bottom: solid 3px #3d496a; 
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+.category a:hover:after { transform: scaleX(1); }
+
 .category{
   margin-top: 40px;
 }
@@ -29,7 +38,7 @@
 
 .product-page{
   background: white;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, white, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to bottom, white, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, white, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
@@ -226,7 +235,8 @@ table{
   margin-left: auto;
   margin-right: auto;
   margin-top: 20px;
-  min-width: 450px;
+  min-width: 600px;
+  min-height: 600px;
   max-width: 60%;
   height: auto;
   background-color: rgba(255, 255, 255, 0.2);
@@ -304,7 +314,7 @@ footer a{
     margin-left: auto;
     margin-right: auto;
   }
-  .selectbox{
+  .select-box{
     display: none;
   }
   table{

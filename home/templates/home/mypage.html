@@ -5,11 +5,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+	<link rel="stylesheet" href="{% static 'home/style_register.css' %}">
     <title>ShopShop</title>
   </head>
   <body>
-		<div >
-			userid : {{ userid }}
+	<div class="form" style="margin-top: 150px;">
+		userid : {{ userid }}
 				<div class="form">
 					<form method="POST">
 					{% csrf_token %}

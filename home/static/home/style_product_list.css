@@ -1,30 +1,154 @@
-:root{
-  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
-}
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding|Roboto&display=swap&subset=korean');
+
 body{
-  background: #ffe259;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif; 
+  background: white;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, white, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, white, #ffe259)no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+text-align: center;
 }
-.main_header {
-text-align:left;
-font-size:25px;
-font-family:sans-serif;
-color:#ffe259;
-letter-spacing: 2px;
-padding: 10px 20px 40px 30px;
--webkit-text-fill-color:transparent;
--webkit-text-stroke-width:3px;
+.chk-area{
+  margin-left: auto;
+  margin-right: auto;
+}
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 10px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #ffeecf;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #fcdd87;
+}
+.option-input:checked {
+  background: #ffa954;
+}
+.option-input:checked::before {
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 15px;
+  text-align: center;
+  line-height: 20px;
+}
+.option-input:checked::after {
+  background: #ffb060;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+body label {
+  display: inline;
+  line-height: 40px;
+}
+.left-nav {
+  width: auto;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 20px;
+}
+
+.left-nav ul {
+  width: 150px;
+  display: grid;
+  grid-gap: 15px;
+  text-align: left;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  list-style: none;
+}
+
+.left-nav li {
+  text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.left-nav li a.upper {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgb(255, 220, 167);
+}
+
+.left-nav li a.upper:hover {
+  color: rgb(255, 220, 167);
+  background: white;
+  opacity: 0.8;
+}
+
+.left-nav li a.lower {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #ffba74;
+}
+
+.left-nav li a.lower:hover {
+  color:#ffba74;
+  background: white;
+  opacity: 0.8;
+
+}
+
+.left-nav li a.lowest {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color:#fda54c;
+}
+
+.left-nav li a.lowest:hover {
+  color:#fda54c;
+  background: white;
+  opacity: 0.8;
 }
 table.table-area {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
     border-collapse: collapse;
-    width: 80%;
+    width: 70%;
     text-align: center;
     line-height: 1.5;
-    margin: 75px;
-    margin-left: auto;
+    margin-top: 20px;
+    margin-left: 20%;
     margin-right: auto;
 }
 table.table-area thead th {
@@ -32,7 +156,7 @@ table.table-area thead th {
     font-weight: bold;
     vertical-align: top;
     color: #FFFFFF;
-    background: #ffa751;
+    background: #ffb060;
     margin: 20px 10px;
     font-size: 14px;
 }
@@ -43,5 +167,17 @@ table.table-area td {
     vertical-align: top;
 }
 table.table-area .even {
-    background: #fdf3f5;
+    background: rgba(255, 255, 255, 0.5);
+}
+@media (max-width: 1100px) {
+  table{
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    max-width: 400px;
+    height: auto;
+  }
+  .left-nav{
+    display: none;
+  }
 }
