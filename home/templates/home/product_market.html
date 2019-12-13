@@ -28,12 +28,6 @@
 
 <body>
   {% include 'home/productsCategory.html' %}
-  {% if pagetype == "market" %}
-  마켓인 경우
-  market page라는 표시??로고?? 좀 있으면 좋겠음(둘이 디자인이 같아서) 귀찮으면 걍 이 if절 삭제 ㄱㄱ
-  {% else %}
-  옥션인 경우
-  {% endif %}
   <div class="product-page">
     <nav class="left-nav" style="font-weight: bold;position: fixed; left:0px; top:15%">
       <ul>
@@ -56,17 +50,20 @@
         <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
       </ul>
     </nav>
-    <div class="select-box select-script">
-      <label for="selectbox">-------</label>
-      <select id="selectbox" onchange="location=this.value;" title="선택 구분">
-        <option selected="selected">-------</option>
-        <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
-        <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
-      </select>
-    </div>
-
 
     <table class="goods_table">
+      <tr>
+        <td>
+          <div class="select-box select-script">
+            <label for="selectbox">-------</label>
+            <select id="selectbox" onchange="location=this.value;" title="선택 구분">
+              <option selected="selected">-------</option>
+              <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
+              <option class="sort-higher-price" value="?sort=higher-price">가격높은순</option>
+            </select>
+          </div>
+        </td>
+      </tr>
       {% for obj in products %}
       <tr>
         <td class="goods_img">
@@ -89,6 +86,8 @@
       </tr>
       {% endfor %}
     </table>
+    <br><br><br><br>
+    <footer>본 웹사이트는 SKKU Web Programming Lab에서 제공합니다. <br> copyright &copy; <a class="src_page" href="https://github.com/breadfly/WPproject" target="_blank">Github Page</a>. Some Rights Reserverd. <br>Thanks for visiting.<br>[Designed & Programmed by 강보영 김지혜 임세아]</footer>
   </div>
 </body>
 
