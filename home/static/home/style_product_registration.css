@@ -1,23 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding&display=swap&subset=korean');
 
 body{
-  background: #ffe259;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ffa751, #ffe259);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ffa751, #ffe259); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif; 
+  background: white;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, white, #ff81b6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, white, #ff81b6)no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+text-align: center;
 }
-
-.main_header {
-text-align:left;
-font-size:25px;
-font-family:sans-serif;
-color:#050502;
-letter-spacing: 2px;
-padding: 10px 20px 40px 30px;
--webkit-text-fill-color:transparent;
--webkit-text-stroke-width:3px;
-}
-
 .left-nav {
   width: auto;
   align-content: center;
@@ -49,11 +42,11 @@ padding: 10px 20px 40px 30px;
   display: block;
   padding: 10px;
   border-radius: 25px;
-  background-color: #E684AE;
+  background-color: rgb(250, 179, 209);
 }
 
 .left-nav li a.upper:hover {
-  color: #E684AE;
+  color: rgb(250, 179, 209);
   background: white;
   opacity: 0.8;
 }
@@ -64,11 +57,11 @@ padding: 10px 20px 40px 30px;
   display: block;
   padding: 10px;
   border-radius: 25px;
-  background-color: #79CBCA;
+  background-color: #fd73b8;
 }
 
 .left-nav li a.lower:hover {
-  color: #79CBCA;
+  color:#ff419a;
   background: white;
   opacity: 0.8;
 
@@ -80,20 +73,21 @@ padding: 10px 20px 40px 30px;
   display: block;
   padding: 10px;
   border-radius: 25px;
-  background-color: #77A1D3;
+  background-color:#ff419a;
 }
 
 .left-nav li a.lowest:hover {
-  color: #77A1D3;
+  color:#ff1d87;
   background: white;
   opacity: 0.8;
 }
 
 .sell-page {
-  width: 360px;
+  width: 500px;
   padding-top: 150px;
   margin: auto;
 }
+
 .form {
   position: relative;
   z-index: 1;
@@ -115,11 +109,50 @@ padding: 10px 20px 40px 30px;
   box-sizing: border-box;
   font-size: 14px;
 }
+
+.select-script{
+  position:relative;
+  left: 110%;
+  margin: 10px;
+  width:170px; 
+  height:30px; 
+  line-height:30px; 
+  border:1px solid #606976; 
+  border-radius:4px; text-transform:uppercase; 
+  background:#fff;
+}
+.select-script label{
+  position:absolute; 
+  width:90%; 
+  font-size:.86em; 
+  color:#606976; 
+  top:0; left:0; 
+  padding:0 5%;
+}
+.select-script label:after{
+  content:'▼'; 
+  width:40px; 
+  height:30px; 
+  position:absolute; 
+  top:0; right:0; 
+  font-size:.76em; 
+  color:#fff; 
+  text-align:center; 
+  background:#606976;}
+.select-script select{
+  width:100%; 
+  height:30px; 
+  opacity:0; 
+  filter:alpha(opacity=0); 
+  -ms-filter:alpha(opacity=0)/* IE 8 */;
+}
+
+
 .form button {
   font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #00B4DB;
+  background: rgb(241, 62, 161);
   width: 100%;
   border: 0;
   padding: 15px;
@@ -131,7 +164,7 @@ padding: 10px 20px 40px 30px;
 }
 
 .form button:hover,.form button:active,.form button:focus {
-  background: #0083B0;
+  background: rgb(211, 19, 125);
 }
 .form .message {
   margin: 15px 0 0;
@@ -154,7 +187,7 @@ padding: 10px 20px 40px 30px;
   font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #00B4DB;
+  background: rgb(211, 19, 125);
   width: 100%;
   border: 0;
   padding: 15px;
@@ -165,7 +198,7 @@ padding: 10px 20px 40px 30px;
   cursor: pointer;
 }
 .btn:hover {
-  background: #0083B0;
+  background: rgb(176, 0, 117);
 }
 @media (max-width: 870px) {
   .left-nav{

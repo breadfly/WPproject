@@ -10,13 +10,82 @@ background: linear-gradient(to bottom, white, #8CA6DB)no-repeat center center fi
 background-size: cover;
 text-align: center;
 }
+.left-nav {
+  width: auto;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 20px;
+}
 
+.left-nav ul {
+  width: 150px;
+  display: grid;
+  grid-gap: 15px;
+  text-align: left;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  list-style: none;
+}
+
+.left-nav li {
+  text-align: center;
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.left-nav li a.upper {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color:#c2ddff;
+}
+
+.left-nav li a.upper:hover {
+  color: #c2ddff;
+  background: white;
+  opacity: 0.8;
+}
+
+.left-nav li a.lower {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: #77A1D3;
+}
+
+.left-nav li a.lower:hover {
+  color: #77A1D3;
+  background: white;
+  opacity: 0.8;
+
+}
+
+.left-nav li a.lowest {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: rgb(75, 116, 167);
+}
+
+.left-nav li a.lowest:hover {
+  color:rgb(75, 116, 167);
+  background: white;
+  opacity: 0.8;
+}
 .search_table{
-  margin-left: auto;
+  margin-left: 20%;
   margin-right: auto;
   font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   border-collapse: collapse;
-  width: 75%;
+  width: 70%;
   text-align: center;
   line-height: 1.5;
   margin-top: 20px;
@@ -63,4 +132,16 @@ text-align: center;
 .btn:hover, .btn:active, .btn:focus{
   background-color: rgb(127, 171, 221);
   color: white;
+}
+@media (max-width: 1100px) {
+  table{
+    margin-right: auto;
+    margin-left: auto;
+    width: 300px;
+    max-width: 400px;
+    height: auto;
+  }
+  .left-nav{
+    display: none;
+  }
 }
