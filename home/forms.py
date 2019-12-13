@@ -31,13 +31,33 @@ class AuctionPurchaseForm(forms.Form):
     error_css_class = 'error'
     current_price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Price', 'size':'10'}))
 
-class EditSellForm(forms.ModelForm):
-    pass
+class EditForm1(forms.ModelForm):
+    error_css_class = 'error'
+    class Meta:
+        model = Product
+        fields = ['expirechoice', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
+
+    def __init__(self, *args, **kwargs):
+        super(SellForm, self).__init__(*args, **kwargs)
+        self.fields['category'].required = False
+        self.fields['explanation'].required = False
+        self.fields['photo'].required = False
+        self.fields['expirechoice'].required = False
+
+class EditForm2(forms.ModelForm):
+    error_css_class = 'error'
+    class Meta:
+        model = Product
+        fields = ['name', 'place', 'photo', 'category', 'explanation']
+
+    def __init__(self, *args, **kwargs):
+        super(SellForm, self).__init__(*args, **kwargs)
+        self.fields['category'].required = False
+        self.fields['explanation'].required = False
+        self.fields['photo'].required = False
 
 class SellForm(forms.ModelForm):
     error_css_class = 'error'
-
-#'selltype', 'expire', 'highest_price', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation'
     class Meta:
         model = Product
         fields = ['selltype', 'expirechoice', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']

@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -18,26 +19,31 @@
             <th scope="cols">Product Name</th>
             <th scope="cols">Current Price</th>
             <th scope="cols">Expiration</th>
-            <th scope="cols">Buyers</th>
-            <th scope="cols">Trading Place</th>
             <th scope="cols">Status</th>
+            <th scope="cols">Bidders/Wishlists</th>
+            <th scope="cols">Trading Place</th>
             <th scope="cols">Options</th>
           </tr>
         </thead>
         <tbody>
         {% for product in products %}
           <tr>
-            <td>{% if product.pid.selltype == "A" %} Auction
+            <td>{% if product.selltype == "A" %} Auction
                 {% else %} Flea Market {% endif %}</td>
-            <td>{{ product.pid.name }}</td>
-            <td>{{ product.pid.current_price }}</td>
-            <td>{{ product.pid.expire }}</td>
-            <td>{{product.userid.username}}</td>
-            <td>{{ product.pid.place}}</td>
-            <td>{% if product.pid.expire <  %} Auction
-                {% else %} Flea Market {% endif %}</td>
-            <td><button type="button" onclick="window.open('{% url 'detail' product.pid.pid %}')">Detail</button>
-                <button type="button" onclick="window.open('{% url 'detail' product.pid.pid %}')">Modify</button></td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.current_price }}</td>
+            <td>{{ product.expire }}</td>
+            <td>{% if product.buyer %} Sold Out
+                {% elif product.expired|utc < now|utc %} Expired 
+                {% else %} On Sale {% endif %}</td>
+            <td>
+                {% if product.selltype == "A" %}  {{ productinfo|get_item_string:product.pid }}
+                {% else %} {{ productinfo|get_item:product.pid }} {% endif %}
+              
+            </td>
+            <td>{{ product.place}}</td>
+            <td><button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Detail</button>
+                <button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Modify</button></td>
           </tr>
           {% endfor %}
           <tr>

@@ -101,13 +101,53 @@ def sell(request):
 		form = SellForm()
 	return render(request, 'home/product_registration.html', {'form':form})
 
+def editProduct(request, pid):
+	try:
+		product = Product.objects.get(pid=pid)
+	except:
+		raise Http404("Product does not exist")
+
+	userid = request.session.get('userid', False)
+	if userid == False : # 로그인 안되어있으면
+		return redirect('/login')
+	elif userid != product.userid :
+		return redirect('/')
+
+	if request.method == 'POST':
+		if product.selltype == 'F':
+			form = EditForm1(request.POST)
+		else :
+			form = EditForm2(request.POST)
+
+		if form.is_valid():
+			form.save()
+			return redirect('/myitems')
+	else:
+		if product.selltype == 'F':
+			form = EditForm1()
+		else :
+			form = EditForm2()
+	return render(request, 'home/sell.html', {'form':form})
+
 def myitems(request):
 	userid = request.session.get('userid', False)
 	if userid == False : # 로그인 안되어있으면
 		return redirect('/login')
-	products = Candidate.objects.select_related('pid').filter(
-		pid__seller__userid=userid)
-	return render(request, 'home/myitems.html', {'products':products})
+	products = Product.objects.filter(seller__userid=userid)
+
+	li = {}
+	for product in products:
+		if product.selltype=='A':
+			temp = Candidate.objects.select_related('pid').filter(pid__seller__userid=userid)
+			li[product.pid] = []
+			for t in temp:
+				li[product.pid] += [(t.userid.username, t.price)]
+		else :
+			temp = len(Wishlist.objects.select_related('pid').filter(pid__pid=product.pid, pid__seller__userid=userid))
+			li[product.pid] = temp
+	return render(request, 'home/myitems.html', {'products':products, 'productinfo':li})
+
+""" BUYER """
 
 def wishlist(request):
 	userid = request.session.get('userid', False)
