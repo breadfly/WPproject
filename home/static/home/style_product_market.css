@@ -12,11 +12,10 @@
 }
 
 hr{
-  width:80%;
+  width:70%;
 }
 body{
   font-family: "Roboto", sans-serif;
-
   background: #77A1D3;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -24,47 +23,26 @@ body{
 }
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-.main_header {
-text-align:left;
-font-size:25px;
-font-family:sans-serif;
-color:#77A1D3;
-letter-spacing: 2px;
-padding: 10px 20px 40px 30px;
--webkit-text-fill-color:transparent;
--webkit-text-stroke-width:3px;
-}
-
 .product-page{
   display: flex;
+  flex-direction:row;
 }
 
 .left-nav{
-  width:300px;
-  align-content: center;
   display:flex;
   flex-direction: column;
-  text-align:center;
-  padding-right:20px;
+  padding-top:25px;
 }
 .left-nav img{
   padding-left:75px;
 }
-section{
-  width:100%;
-}
-
 .left-nav ul{
   width:100%;
   display:grid;
   grid-gap:15px;
-  text-align:left;
   font-size:18px;
   list-style:none;
-}
-.left-nav li{
-  text-align: center;
-
+  padding-top:80px;
 }
 .left-nav li a{
     color:#ffffff;
@@ -75,8 +53,7 @@ section{
     background-color: #77A1D3;
 }
 .left-nav li a:hover{
- color: #77A1D3;
-    background-color: #E684AE;
+  color: #77A1D3;
   background:white;
 }
 

@@ -5,10 +5,24 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>ShopShop</title>
+	<title>ShopShop</title>
+	<link rel="stylesheet" href="{% static 'home/style_mypage.css' %}">
   </head>
   <body>
-		<div >
+		<div class="mypage">
+				<nav class="left-nav">
+						<a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:150px;" alt="LOGO_IMG"></a>
+						<ul>
+						  <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
+						  <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
+						  <li><a class="upper"  href="{% url 'myitems' %}">My Items</a></li>
+						  <li><a class="lower"  href="{% url 'market' %}">Flea Market</a></li>
+						  <li><a class="lower"  href="{% url 'auction' %}">Auction</a></li>
+						  <li><a class="lower"  href="{% url 'mypage' %}">My Account</a></li>
+						  <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
+						</ul>
+					</nav>
+			   
 				<div class="form">
 					<form method="POST">
 					{% csrf_token %}
@@ -20,10 +34,9 @@
 					  {% render_field field id="is-valid" %}
 					{% endif %}
 					{% endfor %}
-	
-					<button type="submit">MODIFY</button>
-				</form>
-			  </div>
+					</form>
+					<button type="submit" class="btn">MODIFY</button>
+			 	</div>
 	  </div>
 	
   </body>
