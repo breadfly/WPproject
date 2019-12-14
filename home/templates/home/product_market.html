@@ -29,7 +29,7 @@
 <body>
   {% include 'home/productsCategory.html' %}
   <div class="product-page">
-    <nav class="left-nav" style="font-weight: bold;position: fixed; left:20px; top:15%">
+    <nav class="left-nav" style="font-weight: bold;position: fixed; left:20px; top:10%">
       <ul>
         <li class="search-content" style="position: relative;">
           <form method="GET" action="">
@@ -53,13 +53,13 @@
 
     <table class="goods_table">
       <tr>
+        <td></td>
         <td>
           <div class="select-box select-script">
             <label for="selectbox">-------</label>
             <select id="selectbox" onchange="location=this.value;" title="선택 구분">
               <option selected="selected">-------</option>
-              <option class="sort-lower-price"
-              value="?sort=lower-price&seller={{search.seller}}&name={{search.pname}}
+              <option class="sort-lower-price" value="?sort=lower-price&seller={{search.seller}}&name={{search.pname}}
               &lower={{search.lower}}&higher={{search.higher}}">가격낮은순</option>
               <option class="sort-higher-price" value="?sort=lower-expire&seller={{search.seller}}&name={{search.pname}}
               &lower={{search.lower}}&higher={{search.higher}}">기한적은순</option>
@@ -86,15 +86,15 @@
             <p class="phone_number"> <strong> Phone Number </strong> {{ obj.seller.phone}} </p>
             <p class="trading_place"> <strong> Trading Place </strong> {{ obj.place }} </p>
           </div>
-          <button type="button" class="market_btn" onclick="window.open('{% url 'detail' obj.pid %}')">New Page</button>
-          <button type="button" class="market_btn" onclick="location.href='{% url 'detail' obj.pid %}'">Current
-            Page</button>
+          <button type="button" class="market_btn" onclick="window.open('{% url 'detail' obj.pid %}')">Detail</button>
         </td>
       </tr>
       {% endfor %}
     </table>
     <br><br><br><br>
-    <footer>본 웹사이트는 SKKU Web Programming Lab에서 제공합니다. <br> copyright &copy; <a class="src_page" href="https://github.com/breadfly/WPproject" target="_blank">Github Page</a>. Some Rights Reserverd. <br>Thanks for visiting.<br>[Designed & Programmed by 강보영 김지혜 임세아]</footer>
+    <footer>본 웹사이트는 SKKU Web Programming Lab에서 제공합니다. <br> copyright &copy; <a class="src_page"
+        href="https://github.com/breadfly/WPproject" target="_blank">Github Page</a>. Some Rights Reserverd. <br>Thanks
+      for visiting.<br>[Designed & Programmed by 강보영 김지혜 임세아]</footer>
   </div>
 </body>
 
