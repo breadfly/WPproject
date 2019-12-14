@@ -10,23 +10,21 @@
   </head>
   <body>
 	<div class="form" style="margin-top: 150px;">
-		userid : {{ userid }}
-				<div class="form">
-					<form method="POST">
-					{% csrf_token %}
-					{% for field in form.visible_fields %}
-					{% if field.errors %}
-					  {{field.errors}}
-					  {% render_field field id="is-invalid" %}
-					{% else %}
-					  {% render_field field id="is-valid" %}
-					{% endif %}
-					{% endfor %}
-	
-					<button type="submit" name="modify">MODIFY</button>
-					<button type="submit" name="delete">DELETE</button>
-				</form>
-			  </div>
+		<div class="username">{{ userid }}님, 정보를 수정하거나 삭제하시겠습니까?</div>
+		<form method="POST">
+			{% csrf_token %}
+			{% for field in form.visible_fields %}
+			{% if field.errors %}
+			  {{field.errors}}
+			  {% render_field field id="is-invalid" %}
+			{% else %}
+			  {% render_field field id="is-valid" %}
+			{% endif %}
+			{% endfor %}
+
+			<button type="submit" name="modify">MODIFY</button>
+			<button type="submit" name="delete">DELETE</button>
+		</form>
 	  </div>
 	
   </body>

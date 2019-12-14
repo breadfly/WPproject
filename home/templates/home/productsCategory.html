@@ -11,16 +11,6 @@
 	<a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:100px;"
 			alt="LOGO_IMG"></a>
 	{% endif %}
-	{% if pagetype == "market" %}
-	<a href="{% url 'market' %}">
-		<p class="category">전체</p>
-	</a>
-	{% else %}
-	<a href="{% url 'auction' %}">
-		<p class="category">전체</p>
-	</a>
-	{% endif %}
-
 	{% for obj in categories %}
 	{% if pagetype == "market" %}
 	<p class="category"><a href="{% url 'marketcategory' obj.name %}">{{obj.name}}</a></p>
