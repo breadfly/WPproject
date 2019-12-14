@@ -357,9 +357,11 @@ def market(request, category=''):
 	name = str(request.GET.get('name', ''))
 	temp = request.GET.get('lower', '')
 	if temp == '':
+		temp_search['lower'] = ''
 		lower = 0
 	elif temp.isdecimal():
 		lower = int(temp)
+		temp_search['lower'] = lower
 	else:
 		return redirect('/market')
 	temp = request.GET.get('higher', '')
@@ -374,7 +376,6 @@ def market(request, category=''):
 
 	temp_search['seller'] = seller
 	temp_search['name'] = name
-	temp_search['lower'] = lower
 
 	if category == 'all':
 		products = Product.objects.filter(selltype='F',
@@ -410,6 +411,7 @@ def auction(request, category='', search=''):
 		return redirect('/auction/all/')
 
 	categories = Category.objects.values('name').distinct()
+	temp_search = {}
 
 	# search
 	seller = str(request.GET.get('seller', ''))
@@ -417,17 +419,24 @@ def auction(request, category='', search=''):
 	temp = request.GET.get('lower', '')
 	if temp == '':
 		lower = 0
+		temp_search['lower'] = ''
 	elif temp.isdecimal():
 		lower = int(temp)
+		temp_search['lower'] = lower
 	else:
 		return redirect('/auction')
 	temp = request.GET.get('higher', '')
 	if temp == '':
 		higher = 2147483647
+		temp_search['higher'] = ''
 	elif temp.isdecimal():
 		higher = int(temp)
+		temp_search['higher'] = higher
 	else:
 		return redirect('/auction')
+
+	temp_search['seller'] = seller
+	temp_search['name'] = name
 
 	if category == 'all':
 		products = Product.objects.filter(selltype='A',
