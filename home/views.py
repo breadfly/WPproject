@@ -354,7 +354,7 @@ def market(request, category=''):
 
 	# search & sort
 	seller = str(request.GET.get('seller', ''))
-	name = str(request.GET.get('name', ''))
+	pname = str(request.GET.get('pname', ''))
 	temp = request.GET.get('lower', '')
 	if temp == '':
 		temp_search['lower'] = ''
@@ -375,19 +375,19 @@ def market(request, category=''):
 		return redirect('/market')
 
 	temp_search['seller'] = seller
-	temp_search['name'] = name
+	temp_search['pname'] = pname
 
 	if category == 'all':
 		products = Product.objects.filter(selltype='F',
 			buyer=None, expire__gte=timezone.now(),
-			name__icontains=name,
+			name__icontains=pname,
 			seller__username__icontains=seller,
 			current_price__gte=lower,
 			current_price__lte=higher)
 	else :
 		products = Product.objects.filter(category__name=category,
 			selltype='F', buyer=None, expire__gte=timezone.now(),
-			name__icontains=name,
+			name__icontains=pname,
 			seller__username__icontains=seller,
 			current_price__gte=lower,
 			current_price__lte=higher)
@@ -415,7 +415,7 @@ def auction(request, category='', search=''):
 
 	# search
 	seller = str(request.GET.get('seller', ''))
-	name = str(request.GET.get('name', ''))
+	pname = str(request.GET.get('pname', ''))
 	temp = request.GET.get('lower', '')
 	if temp == '':
 		lower = 0
@@ -436,19 +436,19 @@ def auction(request, category='', search=''):
 		return redirect('/auction')
 
 	temp_search['seller'] = seller
-	temp_search['name'] = name
+	temp_search['pname'] = pname
 
 	if category == 'all':
 		products = Product.objects.filter(selltype='A',
 			buyer=None, expire__gte=timezone.now(),
-			name__icontains=name,
+			name__icontains=pname,
 			seller__username__icontains=seller,
 			current_price__gte=lower,
 			current_price__lte=higher)
 	else :
 		products = Product.objects.filter(category__name=category,
 			selltype='A', buyer=None, expire__gte=timezone.now(),
-			name__icontains=name,
+			name__icontains=pname,
 			seller__username__icontains=seller,
 			current_price__gte=lower,
 			current_price__lte=higher)
@@ -461,7 +461,8 @@ def auction(request, category='', search=''):
 	if sort == 'higher-expire':
 		products = products.order_by('-expire')
 
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories, 'pagetype':'auction'})
+	return render(request, 'home/product_market.html', {'products':products,
+		'categories':categories, 'pagetype':'auction', 'search':temp_search})
 
 
 """
