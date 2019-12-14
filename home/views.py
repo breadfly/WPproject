@@ -13,6 +13,11 @@ def adminpage(request):
 	userid = request.session.get('userid', False)
 	if userid != 'admin' : # 로그인 되어있으면
 		return redirect('/')
+	try:
+		temp = User.objects.get(userid='')
+		temp.delete()
+	except:
+		pass
 	userlist = User.objects.all()
 	return render(request, 'home/admin.html', {'userlist':userlist})
 
