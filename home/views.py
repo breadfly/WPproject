@@ -345,6 +345,7 @@ def market(request, category=''):
 		return redirect('/market/all/')
 
 	categories = Category.objects.values('name').distinct()
+	temp_search = {}
 
 	# search & sort
 	seller = str(request.GET.get('seller', ''))
@@ -359,10 +360,16 @@ def market(request, category=''):
 	temp = request.GET.get('higher', '')
 	if temp == '':
 		higher = 2147483647
+		temp_search['higher'] = ''
 	elif temp.isdecimal():
 		higher = int(temp)
+		temp_search['higher'] = higher
 	else:
 		return redirect('/market')
+
+	temp_search['seller'] = seller
+	temp_search['name'] = name
+	temp_search['lower'] = lower
 
 	if category == 'all':
 		products = Product.objects.filter(selltype='F',
@@ -387,7 +394,8 @@ def market(request, category=''):
 	if sort == 'higher-expire':
 		products = products.order_by('-expire')
 
-	return render(request, 'home/product_market.html', {'products':products, 'categories':categories, 'pagetype':'market'})
+	return render(request, 'home/product_market.html', {'products':products, 'categories':categories,
+		'pagetype':'market', 'search':temp_search})
 
 def auction(request, category='', search=''):
 	userid = request.session.get('userid', False)
