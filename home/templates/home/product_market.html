@@ -73,9 +73,9 @@
       <tr>
         <td class="goods_img">
           {% if obj.photo %}
-          <img src="{{obj.photo.url}}" style="height: 300px; width: auto; padding: 10px">
+          <img src="{{obj.photo.url}}" style="height: 200px; width: auto; padding: 10px">
           {% else %}
-          <img src="{% static 'home/basic.png' %}">
+          <img src="{% static 'home/basic.png' %}" style="height:200px;">
           {% endif %}
         </td>
         <td class="goods_info">
