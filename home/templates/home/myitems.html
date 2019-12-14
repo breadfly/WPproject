@@ -3,15 +3,14 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ShopShop</title>
+    <link rel="stylesheet" href="{% static 'home/style_search.css' %}">
+  </head>
+  <body>
 
-<head>
-  <meta charset="utf-8">
-  <title>ShopShop</title>
-  <link rel="stylesheet" href="{% static 'home/style_search.css' %}">
-</head>
-
-<body>
-  <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}"
+    <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}"
       style="height:100px; padding: 10px;" alt="LOGO_IMG"></a>
   <nav class="left-nav" style="font-weight: bold;position: fixed; left:20px; top:23%">
     <ul>
@@ -23,44 +22,69 @@
       <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
       <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
     </ul>
-  </nav>
-  <table class="search_table">
-    <thead>
-      <tr>
-        <th scope="cols">Type</th>
-        <th scope="cols">Product Name</th>
-        <th scope="cols">Current Price</th>
-        <th scope="cols">Expiration</th>
-        <th scope="cols">Status</th>
-        <th scope="cols">Bidders/Wishlists</th>
-        <th scope="cols">Trading Place</th>
-        <th scope="cols">Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for product in products %}
-      <tr>
-        <td>{% if product.selltype == "A" %} Auction
-          {% else %} Flea Market {% endif %}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.current_price }}</td>
-        <td>{{ product.expire }}</td>
-        <td>{% if product.buyer %} Sold Out
-          {% elif product.expired|utc < now|utc %} Expired
-          {% else %} On Sale {% endif %}</td>
-        <td>
-          {% if product.selltype == "A" %}
-          {% else %} {{ productinfo|get_item:product.pid }} {% endif %}
-
-        </td>
-        <td>{{ product.place}}</td>
-        <td><button type="button" class="btn" onclick="window.open('{% url 'detail' product.pid %}')">Detail</button>
-          <button type="button" class="btn" onclick="window.open('{% url 'detail' product.pid %}')">Modify</button></td>
-      </tr>
-      {% endfor %}
-
-    </tbody>
-  </table>
-</body>
-
+  </nav> 
+       <table class="search_table">
+        <thead>
+          <tr>
+            <th scope="cols">Type</th>
+            <th scope="cols">Product Name</th>
+            <th scope="cols">Current Price</th>
+            <th scope="cols">Expiration</th>
+            <th scope="cols">Status</th>
+            <th scope="cols">Wishlist Person</th>
+            <th scope="cols">History</th>
+            <th scope="cols">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+        {% if forloop.counter|divisibleby:2 %}
+          <tr>
+            <td>{% if product.selltype == "A" %} Auction
+                {% else %} Flea Market {% endif %}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.current_price }}</td>
+            <td>{{ product.expire }}</td>
+            <td>{% if product.buyer %} Sold Out
+                {% elif product.expired|utc < now|utc %} Expired 
+                {% else %} On Sale {% endif %}</td>
+            <td> {{ wishnum|get_item:product.pid }} </td>
+            <td>
+                {% if product.selltype == "A" %} 
+                {% for item in  history|get_item:product.pid %}
+                {% if forloop.counter|divisibleby:2 %} {{ item }}
+                {% else %} {{ item }} : {% endif %}
+                {% endfor %}
+                {% endif %}
+            </td>
+            <td><button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Detail</button>
+              <button type="button" onclick="window.open('{% url 'editProduct' product.pid %}')">Modify</button></td>
+            </tr>
+          {% else %}
+          <tr>
+            <td class="even">{% if product.selltype == "A" %} Auction
+                {% else %} Flea Market {% endif %}</td>
+            <td class="even">{{ product.name }}</td>
+            <td class="even">{{ product.current_price }}</td>
+            <td class="even">{{ product.expire }}</td>
+            <td class="even">{% if product.buyer %} Sold Out
+                {% elif product.expired|utc < now|utc %} Expired 
+                {% else %} On Sale {% endif %}</td>
+            <td class="even"> {{ wishnum|get_item:product.pid }} </td>
+            <td class="even">
+                {% if product.selltype == "A" %} 
+                {% for item in  history|get_item:product.pid %}
+                {% if forloop.counter|divisibleby:2 %} {{ item }}
+                {% else %} {{ item }} : {% endif %}
+                {% endfor %}
+                {% endif %}
+            </td>
+            <td class="even"><button type="button" onclick="window.open('{% url 'detail' product.pid %}')">Detail</button>
+                <button type="button" onclick="window.open('{% url 'editProduct' product.pid %}')">Modify</button></td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+  </body>
 </html>

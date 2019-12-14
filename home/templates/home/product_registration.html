@@ -57,7 +57,14 @@
           {% endif %}
           {% endfor %}
 
-          <button type="submit" class="btn">Regisration</button>
+          <button type="submit" class="btn" name="ok">{{button_type}}</button>
+          {% if sell_type == "A" %}
+          <button type="submit" class="btn" name="sell"> SELL TO HIGEST </button>
+          <button type="submit" class="btn" name="delete"> DELETE </button>
+          {% endif %}
+          {% if sell_type == "F" %}
+          <button type="submit" class="btn" name="delete"> DELETE </button>
+          {% endif %}
         </form>
       </div>
     </div>

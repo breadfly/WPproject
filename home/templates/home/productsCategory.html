@@ -11,9 +11,12 @@
 	<a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}" style="height:100px;"
 			alt="LOGO_IMG"></a>
 	{% endif %}
-	
 	{% for obj in categories %}
+	{% if pagetype == "market" %}
 	<p class="category"><a href="{% url 'marketcategory' obj.name %}">{{obj.name}}</a></p>
+	{% else %}
+	<p class="category"><a href="{% url 'auctioncategory' obj.name %}">{{obj.name}}</a></p>
+	{% endif %}
 	{% endfor %}
 </nav>
 {%load static%}

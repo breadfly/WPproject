@@ -2,7 +2,7 @@ from django import forms
 from .models import Customer
 from .models import User
 from .models import Product
-
+from .models import Category
 """
 	SELLTYPES = (('F', 'Flea'), ('A', 'Auction'))
 	selltype = models.CharField(max_length=1, default='F', choices=SELLTYPES)
@@ -23,41 +23,67 @@ from .models import Product
 	explanation = models.CharField(max_length=1000) # string field 같은 게 있었나?? 찾아보기
 """
 
-
 class MarketPurchaseForm(forms.Form):
     pass
 
+class CategoryForm(forms.ModelForm):
+    error_css_class = 'error'
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Category'}))
+    class Meta:
+        model = Category
+        fields = ['name']
+
 class AuctionPurchaseForm(forms.Form):
     error_css_class = 'error'
-    current_price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Price', 'size':'10'}))
+    current_price = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder':'Price'}))
+    def is_valid(self):
+        valid = super(SellForm, self).is_valid()
+        if current_price > 2147483647:
+            self.add_error('basic_price', "Price should be lower than 2147483647")
+            valid=False
+        return valid
 
 class EditForm1(forms.ModelForm):
-    error_css_class = 'error'
+    error_css_class = 'error' 
+    category = forms.ModelChoiceField(queryset=Category.objects.all())
     class Meta:
         model = Product
-        fields = ['expirechoice', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
+        fields = ['basic_price', 'name', 'place', 'photo', 'category', 'explanation']
 
     def __init__(self, *args, **kwargs):
-        super(SellForm, self).__init__(*args, **kwargs)
+        super(EditForm1, self).__init__(*args, **kwargs)
         self.fields['category'].required = False
         self.fields['explanation'].required = False
         self.fields['photo'].required = False
-        self.fields['expirechoice'].required = False
+        self.fields['category'].label_from_instance = self.label_from_instance
+
+    @staticmethod
+    def label_from_instance(obj):
+        return obj.name
 
 class EditForm2(forms.ModelForm):
-    error_css_class = 'error'
+    error_css_class = 'error' 
+    category = forms.ModelChoiceField(queryset=Category.objects.all())
     class Meta:
         model = Product
         fields = ['name', 'place', 'photo', 'category', 'explanation']
 
     def __init__(self, *args, **kwargs):
-        super(SellForm, self).__init__(*args, **kwargs)
+        super(EditForm2, self).__init__(*args, **kwargs)
         self.fields['category'].required = False
         self.fields['explanation'].required = False
         self.fields['photo'].required = False
+        self.fields['category'].label_from_instance = self.label_from_instance
+
+    @staticmethod
+    def label_from_instance(obj):
+        return obj.name
+
 
 class SellForm(forms.ModelForm):
-    error_css_class = 'error'
+    error_css_class = 'error' 
+    category = forms.ModelChoiceField(queryset=Category.objects.all())
+
     class Meta:
         model = Product
         fields = ['selltype', 'expirechoice', 'basic_price', 'name', 'place', 'photo', 'category', 'explanation']
@@ -68,7 +94,11 @@ class SellForm(forms.ModelForm):
         self.fields['explanation'].required = False
         self.fields['photo'].required = False
         self.fields['expirechoice'].required = False
+        self.fields['category'].label_from_instance = self.label_from_instance
 
+    @staticmethod
+    def label_from_instance(obj):
+        return obj.name
 
     def is_valid(self):
         valid = super(SellForm, self).is_valid()
@@ -81,6 +111,7 @@ class SellForm(forms.ModelForm):
             valid= False
         elif  basic_price > 2147483647:
             self.add_error('basic_price', "Price should be lower than 2147483647")
+            valid=False
         return valid
 
 class RegisterForm(forms.ModelForm):

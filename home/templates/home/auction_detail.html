@@ -3,13 +3,23 @@
 
 	</head>
 	<body>
+		<p>{{product.category}}</p>
 		<p>{{product.name}}</p>
 		<p>{{product.seller.username}}</p>
+		<p>{{product.seller.phone}}</p>
+		<p>{{product.expire}}</p>
+		<p>{{product.current_price}}</p>
+		<p>{{product.place}}</p>
+		{% if product.photo %}
+		<img src="{{product.photo.url}}"></img>
+		{% endif %}
+		<p>{{product.explanation}}</p>
 		detail page
+		{{msg}} <!-- 본인 물품 살수없다는 경고 메시지 표시됨-->
 		<form action="" method="POST">
 			
 			{% csrf_token %}
-			{{form.as_p}}
+			{{form.current_price}}
 			<button type="submit" name="buy">BID</button>
 			<button type="submit" name="wish">WISHLIST</button>
 		</form>

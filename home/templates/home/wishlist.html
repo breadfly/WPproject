@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -49,6 +50,10 @@
         <th scope="cols">My Price</th>
         {% endif %}
         <th scope="cols">Current Price</th>
+        {% if request.get_full_path == "/wishlist/?page=buy" %}
+        <th scope="cols">Status</th>
+        {% endif %}
+        <th scope="cols">Expiration</th>
         <th scope="cols">Seller</th>
         <th scope="cols">Phone</th>
         <th scope="cols">Trading Place</th>
@@ -67,6 +72,12 @@
         <td> {{ obj.price}} </td>
         {% endif %}
         <td> {{obj.pid.current_price}} </td>
+        {% if request.get_full_path == "/wishlist/?page=buy" %}
+        <td>{% if product.buyer %} Sold Out
+          {% elif product.expired|utc < now|utc %} Expired 
+          {% else %} On Sale {% endif %}</td>
+        {% endif %}
+        <td> {{ obj.pid.expire }} </td>
         <td> {{ obj.pid.seller.username }} </td>
         <td> {{ obj.pid.seller.phone }} </td>
         <td> {{ obj.pid.place }} </td>
@@ -80,6 +91,12 @@
         <td class=even> {{ obj.price}} </td>
         {% endif %}
         <td class=even> {{obj.pid.current_price}} </td>
+        {% if request.get_full_path == "/wishlist/?page=buy" %}
+        <td class=even>{% if product.buyer %} Sold Out
+          {% elif product.expired|utc < now|utc %} Expired 
+          {% else %} On Sale {% endif %}</td>
+        {% endif %}
+        <td class=even> {{ obj.pid.expire }} </td>
         <td class=even> {{ obj.pid.seller.username }} </td>
         <td class=even> {{ obj.pid.seller.phone }} </td>
         <td class=even> {{ obj.pid.place }} </td>
