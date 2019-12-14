@@ -7,24 +7,22 @@
 
 <head>
 
-    <style>
-        .errorlist{
-          color: rgb(204, 23, 23);
-          list-style: none;
-          font-size:11.5px;
-          padding:0;
-          margin:0 0 5% 0;
-        }
-        
-        #is-invalid{
-          border: 1px solid rgb(255, 18, 18);
-        }
-        #is-valid{
-        }
-    
-    
-        </style>
-    
+  <style>
+    .errorlist {
+      color: rgb(204, 23, 23);
+      list-style: none;
+      font-size: 11.5px;
+      padding: 0;
+      margin: 0 0 5% 0;
+    }
+
+    #is-invalid {
+      border: 1px solid rgb(255, 18, 18);
+    }
+
+    #is-valid {}
+  </style>
+
   <meta charset="utf-8">
   <link rel="stylesheet" href="{% static 'home/style_product_registration.css' %}">
   <title>ShopShop</title>
@@ -32,17 +30,17 @@
 
 <body>
   <div class="product-page">
-      <nav class="left-nav" style="font-weight: bold;position: fixed; left:20px; top:23%">
-          <ul>
-            <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
-            <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
-            <li><a class="upper" href="{% url 'myitems' %}">My Items</a></li>
-            <li><a class="lower" href="{% url 'market' %}">Flea Market</a></li>
-            <li><a class="lower" href="{% url 'auction' %}">Auction</a></li>
-            <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
-            <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
-          </ul>
-        </nav>
+    <nav class="left-nav" style="font-weight: bold;position: fixed; left:20px; top:23%">
+      <ul>
+        <li><a class="upper" href="{% url 'sell' %}">Sell</a></li>
+        <li><a class="upper" href="{% url 'wishlist' %}">Wishlist</a></li>
+        <li><a class="upper" href="{% url 'myitems' %}">My Items</a></li>
+        <li><a class="lower" href="{% url 'market' %}">Flea Market</a></li>
+        <li><a class="lower" href="{% url 'auction' %}">Auction</a></li>
+        <li><a class="lowest" href="{% url 'mypage' %}">My Account</a></li>
+        <li><a class="lowest" href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </nav>
     <div class="sell-page">
       <div class="form">
         <form method="POST" enctype="multipart/form-data" novalidate>

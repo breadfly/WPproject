@@ -196,7 +196,6 @@ padding: 10px 20px 40px 30px;
 
 .select-script{
   position:relative;
-  left: 110%;
   margin: 10px;
   width:170px; 
   height:30px; 
@@ -265,11 +264,12 @@ td{
   font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
   outline: 0;
   background: #00B4DB;
-  width: 45%;
+  width: 80%;
   border: 0;
   padding: 10px;
   color: #ffffff;
   margin:3px;
+  margin-bottom: 7px;
   font-size: 13px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
