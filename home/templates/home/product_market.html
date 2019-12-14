@@ -34,7 +34,7 @@
         <li class="search-content" style="position: relative;">
           <form method="GET" action="">
             <input type="text" name="seller" placeholder="Seller" value="{{search.seller}}">
-            <input type="text" name="name" placeholder="Name" value="{{search.name}}">
+            <input type="text" name="pname" placeholder="Name" value="{{search.pname}}">
             <input type="number" name="lower" placeholder="Lowest Price" value="{{search.lower}}">
             <input type="number" name="higher" placeholder="Highest Price" value="{{search.higher}}">
             <button type="submit" class="btn">SEARCH</button>
@@ -58,9 +58,13 @@
             <label for="selectbox">-------</label>
             <select id="selectbox" onchange="location=this.value;" title="선택 구분">
               <option selected="selected">-------</option>
-              <option class="sort-lower-price" value="?sort=lower-price">가격낮은순</option>
-              <option class="sort-higher-price" value="?sort=lower-expire">기한적은순</option>
-              <option class="sort-higher-price" value="?sort=higher-expire">기한많은순</option>
+              <option class="sort-lower-price"
+              value="?sort=lower-price&seller={{search.seller}}&name={{search.pname}}
+              &lower={{search.lower}}&higher={{search.higher}}">가격낮은순</option>
+              <option class="sort-higher-price" value="?sort=lower-expire&seller={{search.seller}}&name={{search.pname}}
+              &lower={{search.lower}}&higher={{search.higher}}">기한적은순</option>
+              <option class="sort-higher-price" value="?sort=higher-expire&seller={{search.seller}}&name={{search.pname}}
+              &lower={{search.lower}}&higher={{search.higher}}">기한많은순</option>
             </select>
           </div>
         </td>
