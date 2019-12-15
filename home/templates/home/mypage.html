@@ -10,7 +10,7 @@
   </head>
   <body>
 	<div class="form" style="margin-top: 150px;">
-		<div class="username">{{ userid }}님, 정보를 수정하거나 삭제하시겠습니까?</div>
+		<div class="username">{{ userid }}님의 정보를 수정하거나 삭제하시겠습니까?</div>
 		<form method="POST">
 			{% csrf_token %}
 			{% for field in form.visible_fields %}

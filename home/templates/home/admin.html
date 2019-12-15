@@ -1,56 +1,53 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>ShopShop</title>
-    <link rel="stylesheet" href="{% static 'home/style_admin.css' %}">
-  </head>
-  <body>
-    <h1><a href="{% url 'categoryadd' %}"> MAKE CATEGORY </a>
 
-      추가기능이 몇개 없는 것 같아서ㅠ;
-      카테고리 추가하는 기능 만들어봤는데
-      카테고리를 추가하니 메인페이지 디자인이 좀 이상해지네...
-      어쩔까..
-      디자인 하는 분들의 선택에 맡기겠어요..
- 
-      <header class="main_header"></h1>
-        <h1>ShopShop</h1>
-      </header>
-    <table class="table-area">
+<head>
+  <meta charset="utf-8">
+  <title>ShopShop</title>
+  <link rel="stylesheet" href="{% static 'home/style_admin.css' %}">
+</head>
+
+<body>
+  <a href="{% url 'market' %}" target="_parent"><img src="{% static 'home/logo.png' %}"
+      style="height:100px; padding: 10px;" alt="LOGO_IMG"></a>
+
+  <table class="search_table">
     <thead>
-    <tr>
+      <tr>
         <th scope="cols">Student ID</th>
         <th scope="cols">Password</th>
         <th scope="cols">Phone</th>
         <th scope="cols">Name</th>
         <th scope="cols">Options</th>
-    </tr>
-</thead>
+      </tr>
+    </thead>
     <tbody>
-    {% for user in userlist %}
-    <tr>
+      {% for user in userlist %}
+      <tr>
         {% if forloop.counter|divisibleby:2 %}
         <td>{{ user.userid }}</td>
         <td>{{ user.pw }}</td>
         <td> {{user.phone}}</td>
         <td> {{user.username}}</td>
-        <td>     <button type="button" onclick="window.open('{% url 'userpage' user.userid %}')">New Page</button>
-            <button type="button" onclick="location.href='{% url 'userpage' user.userid %}'">Current Page</button>
+        <td> <button type="button" onclick="window.open('{% url 'userpage' user.userid %}')">Modify</button>
+
         </td>
         {% else %}
         <td class="even">{{ user.userid }}</td>
         <td class="even">{{ user.pw }}</td>
         <td class="even"> {{user.phone}}</td>
         <td class="even"> {{user.username}}</td>
-        <td class="even">   <button type="button" onclick="window.open('{% url 'userpage' user.userid %}')">New Page</button>
-            <button type="button" onclick="location.href='{% url 'userpage' user.userid %}'">Current Page</button>
+        <td class="even"> <button type="button"
+            onclick="window.open('{% url 'userpage' user.userid %}')">Modify</button>
         </td>
         {% endif %}
-    </tr>
-    {%  endfor %}
+      </tr>
+      {%  endfor %}
     </tbody>
   </table>
-  </body>
+  
+  <button class="logout_btn" href="{% url 'logout' %}">Logout</button>
+</body>
+
 </html>
