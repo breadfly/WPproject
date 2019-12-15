@@ -7,7 +7,23 @@
     <meta charset="utf-8">
 	<link rel="stylesheet" href="{% static 'home/style_register.css' %}">
     <title>ShopShop</title>
-  </head>
+	<style>
+		.errorlist {
+		  color: rgb(204, 23, 23);
+		  list-style: none;
+		  font-size: 11.5px;
+		  padding: 0;
+		  margin: 0 0 5% 0;
+		}
+	
+		#is-invalid {
+		  border: 1px solid rgb(255, 18, 18);
+		}
+	
+		#is-valid {}
+	  </style>
+	
+</head>
   <body>
 	<div class="form" style="margin-top: 150px;">
 		<div class="username">{{ userid }}님의 정보를 수정하거나 삭제하시겠습니까?</div>
