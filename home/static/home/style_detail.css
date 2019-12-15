@@ -2,8 +2,8 @@
 
 body{
   background: white;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, white, rgb(146, 118, 248), rgb(159, 83, 247));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, white, rgb(146, 118, 248), rgb(159, 83, 247)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to bottom, white, #ad66ff,  #7b05db);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, white, #ad66ff,   #7b05db); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
 }
 td{
@@ -14,15 +14,17 @@ td{
   .btn{
     margin: 10px;
     border: 0;
-    background: rgb(159, 49, 250);
+    background: rgb(148, 63, 245);
     color: white;
     padding: 13px;
+    border-radius: 20px;
     font-weight: bold;
-    width: 15%;
+    width: 50%;
     cursor: pointer;
   }
   .btn:hover{
-    background:rgb(187, 133, 248);
+    background:rgb(255, 255, 255);
+    color: #7b05db;
   }
   .product_info{
     margin-left:20%;

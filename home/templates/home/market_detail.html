@@ -30,17 +30,19 @@
 					<p> <strong>Product Explanation: </strong>{{product.explanation}} </p>
 				</td>
 			</tr>
-		</table>
-	</div>
-	{{msg}}
-	<!-- 본인 물품 살수없다는 경고 메시지 표시됨-->
-	<div class="form">
+			<td></td>
+			<td><div class="form">
 		<form action="" method="POST">
 			{% csrf_token %}
 			<button type="submit" class="btn" name="buy">BUY</button>
 			<button type="submit" class="btn" name="wish">WISHLIST</button>
 		</form>
+	</div></td>
+		</table>
 	</div>
+	{{msg}}
+	<!-- 본인 물품 살수없다는 경고 메시지 표시됨-->
+	
 </body>
 
 </html>
