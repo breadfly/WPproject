@@ -8,14 +8,14 @@
 		<div class="product_info">
 			<table class="inf" >
 				<tr>
-					<td classs="image" width="40%">
+					<td classs="image">
 						{% if product.photo %}
-						<img src="{{product.photo.url}}">
+						<img class="image" src="{{product.photo.url}}"style="height: 200px; width: auto; padding: 10px">
 						{% else %}
 						<img src="{% static 'home/basic.png' %}" style="height:200px;">
 						{% endif %}
 					</td>
-					<td clas="info" width="35%">
+					<td >
 					<p> <strong>Category:</strong>{{product.category.name}} </p>
 					<p> <strong>Product Name:</strong>{{product.name}} </p>	
 					<p> <strong>Seller Name:</strong> {{product.seller.username}} </p>	

@@ -9,7 +9,7 @@
 					<tr>
 						<td class="image">
 							{% if product.photo %}
-							<img src="{{product.photo.url}}">
+							<img src="{{product.photo.url}}" style="height: 200px; width: auto; padding: 10px"></img>
 							{% else %}
 							<img src="{% static 'home/basic.png' %}" style="height:200px;">
 							{% endif %}

@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding|Roboto&display=swap&subset=korean');
 
 body{
@@ -14,7 +13,7 @@ body{
     color: white;
     padding: 13px;
     font-weight: bold;
-    width: 30%;
+    width: 15%;
     border-radius: 1px;
     cursor: pointer;
   }
