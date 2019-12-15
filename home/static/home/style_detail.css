@@ -1,0 +1,48 @@
+
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Montserrat|Nanum+Gothic+Coding|Roboto&display=swap&subset=korean');
+
+body{
+  background: white;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, white, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, white, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  text-align: center;
+}
+  .btn{
+    margin: 10px;
+    border: 0;
+    background: #0083B0;
+    color: white;
+    padding: 13px;
+    font-weight: bold;
+    width: 30%;
+    border-radius: 1px;
+    cursor: pointer;
+  }
+  .btn:hover{
+    background: #0083B0;
+  }
+  .product_info{
+    margin-left:20%;
+    margin-top:50px;
+    margin-bottom:20px;
+    background: rgba(252, 237, 243, 0.3);
+    border-radius:10px;
+    padding:10px;
+    width:60%;
+  }
+  .inf{
+    color: #575453;
+    text-align:center;
+    margin-left:10%;
+  }
+.form input{
+  font-family: 'Montserrat', 'Nanum Gothic Coding', sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 180px;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 12px;
+  box-sizing: border-box;
+  font-size: 14px;
+}

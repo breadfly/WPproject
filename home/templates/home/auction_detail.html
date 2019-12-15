@@ -1,27 +1,41 @@
+{% load static %}
 <html>
 	<head>
-
+		<title>ShopShop</title>
+		<link rel="stylesheet" href="{% static 'home/style_detail.css' %}">	
 	</head>
 	<body>
-		<p>{{product.category}}</p>
-		<p>{{product.name}}</p>
-		<p>{{product.seller.username}}</p>
-		<p>{{product.seller.phone}}</p>
-		<p>{{product.expire}}</p>
-		<p>{{product.current_price}}</p>
-		<p>{{product.place}}</p>
-		{% if product.photo %}
-		<img src="{{product.photo.url}}"></img>
-		{% endif %}
-		<p>{{product.explanation}}</p>
-		detail page
-		{{msg}} <!-- 본인 물품 살수없다는 경고 메시지 표시됨-->
-		<form action="" method="POST">
-			
-			{% csrf_token %}
-			{{form.current_price}}
-			<button type="submit" name="buy">BID</button>
-			<button type="submit" name="wish">WISHLIST</button>
-		</form>
+		<div class="product_info">
+			<table class="inf" >
+				<tr>
+					<td classs="image" width="40%">
+						{% if product.photo %}
+						<img src="{{product.photo.url}}">
+						{% else %}
+						<img src="{% static 'home/basic.png' %}" style="height:200px;">
+						{% endif %}
+					</td>
+					<td clas="info" width="35%">
+					<p> <strong>Category:</strong>{{product.category.name}} </p>
+					<p> <strong>Product Name:</strong>{{product.name}} </p>	
+					<p> <strong>Seller Name:</strong> {{product.seller.username}} </p>	
+					<p> <strong>Phone Number:</strong> {{product.seller.phone}} </p>	
+					<p> <strong>Expire:</strong> {{product.expire}} </p>	
+					<p> <strong>Current Price:</strong>{{product.current_price}} </p>	
+					<p> <strong>Trading Place:</strong>{{product.place}} </p>	
+					<p> <strong>Product Explanation:</strong>{{product.explanation}} </p>	
+					{{msg}} <!-- 본인 물품 살수없다는 경고 메시지 표시됨-->
+					<div class="form">
+						<form action="" method="POST">	
+							{% csrf_token %}
+							{{form.current_price}}
+							<button type="submit" class="btn" name="buy">BID</button>
+							<button type="submit" class="btn" name="wish">WISHLIST</button>
+						</form>
+					</div>	
+				</td>	
+				</tr>
+			</table>	
+		</div>
 	</body>
 </html>
