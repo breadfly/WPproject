@@ -28,16 +28,16 @@
         {% if forloop.counter|divisibleby:2 %}
         <td>{{ user.userid }}</td>
         <td>{{ user.pw }}</td>
-        <td> {{user.phone}}</td>
-        <td> {{user.username}}</td>
+        <td> {{ user.phone }}</td>
+        <td> {{ user.username }}</td>
         <td> <button type="button" onclick="window.open('{% url 'userpage' user.userid %}')">Modify</button>
 
         </td>
         {% else %}
         <td class="even">{{ user.userid }}</td>
         <td class="even">{{ user.pw }}</td>
-        <td class="even"> {{user.phone}}</td>
-        <td class="even"> {{user.username}}</td>
+        <td class="even"> {{ user.phone }}</td>
+        <td class="even"> {{ user.username }}</td>
         <td class="even"> <button type="button"
             onclick="window.open('{% url 'userpage' user.userid %}')">Modify</button>
         </td>
@@ -47,7 +47,7 @@
     </tbody>
   </table>
   
-  <button class="logout_btn" href="{% url 'logout' %}">Logout</button>
+  <a href="{% url 'logout' %}"><button class="logout_btn" >Logout</button></a>
 </body>
 
 </html>

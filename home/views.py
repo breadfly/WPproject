@@ -38,8 +38,11 @@ def userpage(request, uid=''):
 				user.delete()
 				del request.session['userid']
 			else:
-				form.save()
-			return redirect('/')
+				user.pw = str(form.data['pw'])
+				user.phone = str(form.data['phone'])
+				user.username = str(form.data['username'])
+				user.save()
+			return redirect('/adminpage')
 	else:
 		form = ModifyForm(initial={'pw':user.pw, 'phone':user.phone, 'username':user.username})
 	return render(request, 'home/mypage.html', {'form':form, 'userid':userid})
@@ -117,7 +120,11 @@ def mypage(request):
 				User.objects.get(userid=userid).delete()
 				del request.session['userid']
 			else:
-				form.save()
+				user = User.objects.get(userid=userid)
+				user.pw = str(form.data['pw'])
+				user.phone = str(form.data['phone'])
+				user.username = str(form.data['username'])
+				user.save()
 			return redirect('/')
 	else:
 		user = User.objects.get(userid=userid)
