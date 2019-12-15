@@ -2,23 +2,27 @@
 
 body{
   background: white;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, white, #79CBCA, #77A1D3);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, white, #79CBCA, #77A1D3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to bottom, white, rgb(146, 118, 248), rgb(159, 83, 247));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, white, rgb(146, 118, 248), rgb(159, 83, 247)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
+}
+td{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
 }
   .btn{
     margin: 10px;
     border: 0;
-    background: #0083B0;
+    background: rgb(159, 49, 250);
     color: white;
     padding: 13px;
     font-weight: bold;
     width: 15%;
-    border-radius: 1px;
     cursor: pointer;
   }
   .btn:hover{
-    background: #0083B0;
+    background:rgb(187, 133, 248);
   }
   .product_info{
     margin-left:20%;
